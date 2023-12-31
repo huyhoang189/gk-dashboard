@@ -3,7 +3,7 @@ import { PUBLIC_ROUTER } from "../../commons/router-common";
 import { Image, Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
-import bg from "../../assets/img/bg_1.jpg";
+import bg from "../../assets/img/3043140.jpg";
 const { Sider } = Layout;
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Sidebar = () => {
         background: `url(${bg})`, // Replace with the actual path to your image
         backgroundSize: "cover", // Adjust as needed
         backgroundRepeat: "no-repeat", // Adjust as needed
-        backgroundPosition: "center", // Adjust as needed
+        backgroundPosition: "bottom right", // Adjust as needed
       }}
     >
       <div style={{ padding: "10px 60px" }}>
