@@ -18,7 +18,7 @@ root.render(
         borderRadius: 2,
         colorBorderSecondary: "#d6d9dc",
         colorBorder: "#d6d9dc",
-        fontSize: 13,
+        fontSize: 12,
       },
     }}
   >
