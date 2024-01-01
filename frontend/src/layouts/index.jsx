@@ -9,7 +9,7 @@ import {
   Space,
   theme,
 } from "antd";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar";
 import { Outlet, useNavigate } from "react-router-dom";
 import { LayoutWrapper } from "../assets/styles/layout-style";
 import { UserOutlined } from "@ant-design/icons";
