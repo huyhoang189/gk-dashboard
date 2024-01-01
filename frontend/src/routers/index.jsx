@@ -6,6 +6,7 @@ import Whitelists from "../pages/whitelists";
 import Page404 from "../pages/page404";
 import Login from "../pages/auth";
 import Challenges from "../pages/challenges";
+import Successs from "../pages/successs";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: "challenges",
         element: <Challenges />,
+      },
+      {
+        path: "success",
+        element: <Successs />,
       },
     ],
   },

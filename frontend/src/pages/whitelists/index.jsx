@@ -20,7 +20,7 @@ const pageHeader = {
   ],
 };
 
-const Backlists = () => {
+const Whitelists = () => {
   const dispatch = useDispatch();
   const { whitelists, isLoading } = useSelector((state) => state.whitelists);
   const [keyword, setKeyword] = useState("");
@@ -114,4 +114,4 @@ const Backlists = () => {
   );
 };
 
-export default Backlists;
+export default Whitelists;

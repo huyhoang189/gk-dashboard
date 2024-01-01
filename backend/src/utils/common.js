@@ -37,7 +37,8 @@ const filterObjectsByProperties = (data, keyword, properties) => {
   return data.filter((item) => {
     return properties.some((prop) => {
       const value = item[prop] && item[prop].toString();
-      return value.includes(keyword);
+
+      return value && value.includes(keyword);
     });
   });
 };
@@ -49,6 +50,7 @@ const matchingData = (item) => {
     url: "",
     request: "",
     HTTPStatus: "",
+    responseSize: 0,
     raw: item,
   };
 
@@ -78,6 +80,7 @@ const matchingData = (item) => {
         url: referrer,
         request: `${requestMethod} ${requestUrl}`,
         HTTPStatus: parseInt(httpStatus, 10),
+        responseSize,
       };
 
       return extractedData;
