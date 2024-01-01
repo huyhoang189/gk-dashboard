@@ -42,6 +42,10 @@ const PUBLIC_ROUTER = [
         key: "whitelists",
         label: "Whitelist",
       },
+      {
+        key: "nginx",
+        label: "Cấu hình Challenge",
+      },
     ],
   },
   {

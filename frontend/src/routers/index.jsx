@@ -7,6 +7,7 @@ import Page404 from "../pages/page404";
 import Login from "../pages/auth";
 import Challenges from "../pages/challenges";
 import Successs from "../pages/successs";
+import Configs from "../pages/configs";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "success",
         element: <Successs />,
+      },
+      {
+        path: "nginx",
+        element: <Configs />,
       },
     ],
   },

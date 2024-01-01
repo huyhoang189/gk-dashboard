@@ -7,6 +7,7 @@ import blacklistSlice from "./blacklists/slice";
 import whitelistSlice from "./whitelists/slice";
 import challengeSlice from "./challenges/slice";
 import successSlice from "./successs/slice";
+import configSlice from "./configs/slice";
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [
   ...getDefaultMiddleware({ thunk: false, serializableCheck: false }),
@@ -20,6 +21,7 @@ export const store = configureStore({
     whitelists: whitelistSlice.reducer,
     challenges: challengeSlice.reducer,
     successs: successSlice.reducer,
+    configs: configSlice.reducer,
   },
   middleware,
 });
