@@ -1,8 +1,8 @@
 const express = require("express");
 const pagination = require("../middlewares/validation/pagination");
 const checkHealth = require("../middlewares/handler/checkHealth");
-const blacklistRoute = require("./backlist.router");
-
+const blacklistRoute = require("./blacklist.router");
+const whitelistRoute = require("./whitelist.router");
 const router = express.Router();
 
 /**
@@ -19,4 +19,5 @@ const router = express.Router();
 router.get("/", checkHealth);
 router.use(pagination);
 router.use("/blacklists", blacklistRoute);
+router.use("/whitelists", whitelistRoute);
 module.exports = router;

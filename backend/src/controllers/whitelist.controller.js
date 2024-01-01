@@ -5,67 +5,67 @@ const {
 } = require("../utils/response/error.response");
 const fs = require("fs");
 
-const filename = process.env.BLACK_LIST_CONFIG_FILE;
+const filename = process.env.WHITE_LIST_CONFIG_FILE;
 const ipRegex =
   /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
-class BlacklistController {
-  // Get all blacklist IPs
+class WhitelistController {
+  // Get all whitelist IPs
   getAll = async (req, res, next) => {
-    const blacklists = readBlacklistIps();
+    const whitelists = readWhitelistIps();
 
-    if (!blacklists) throw new NotFoundError("Not found blacklist");
+    if (!whitelists) throw new NotFoundError("Not found whitelist");
 
     // Return a success response
     return new Succeed({
-      message: "Get blacklist success",
+      message: "Get whitelist success",
       metadata: {
-        data: blacklists,
-        total: blacklists?.length,
+        data: whitelists,
+        total: whitelists?.length,
       },
     }).send(res);
   };
 
-  // Create a new blacklist IP
+  // Create a new whitelist IP
   create = async (req, res, next) => {
     const { ip } = req.body;
     if (!ip) throw new NotFoundError("IP address is required");
 
     if (!isValidIP(ip)) throw new ForbiddenError("It isn't IP format");
 
-    const blacklists = readBlacklistIps();
+    const whitelists = readWhitelistIps();
 
-    const index = blacklists.indexOf(ip);
+    const index = whitelists.indexOf(ip);
     if (index !== -1) throw new ForbiddenError("IP address is existed");
 
     // Insert the new IP
-    blacklists.push(ip);
-    writeBlacklistIps(blacklists);
+    whitelists.push(ip);
+    writeWhitelistIps(whitelists);
 
     // Return a success response
     return new Succeed({
       message: "IP inserted successfully",
       metadata: {
-        data: blacklists,
-        total: blacklists?.length,
+        data: whitelists,
+        total: whitelists?.length,
       },
     }).send(res);
   };
 
-  // Delete a blacklist IP
+  // Delete a whitelist IP
   delete = async (req, res, next) => {
     const { ip } = req.params;
 
-    const blacklists = readBlacklistIps();
-    const index = blacklists.indexOf(ip);
+    const whitelists = readWhitelistIps();
+    const index = whitelists.indexOf(ip);
     if (index !== -1) {
-      blacklists.splice(index, 1);
-      writeBlacklistIps(blacklists, filename);
+      whitelists.splice(index, 1);
+      writeWhitelistIps(whitelists, filename);
       return new Succeed({
         message: "IP deleted successfully",
         metadata: {
           data: ip,
-          total: blacklists?.length,
+          total: whitelists?.length,
         },
       }).send(res);
     }
@@ -74,10 +74,10 @@ class BlacklistController {
   };
 }
 
-module.exports = BlacklistController;
+module.exports = WhitelistController;
 
-// Function to read the list of blacklisted IPs from a file
-const readBlacklistIps = () => {
+// Function to read the list of whitelisted IPs from a file
+const readWhitelistIps = () => {
   try {
     const data = fs.readFileSync(filename, "utf8");
     return data.split("\n").filter((ip) => ip.trim() !== "");
@@ -86,8 +86,8 @@ const readBlacklistIps = () => {
   }
 };
 
-// Function to write the list of blacklisted IPs to a file
-const writeBlacklistIps = (ipList) => {
+// Function to write the list of whitelisted IPs to a file
+const writeWhitelistIps = (ipList) => {
   fs.writeFileSync(filename, ipList.join("\n") + "\n");
 };
 

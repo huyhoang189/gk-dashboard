@@ -59,7 +59,10 @@ export default function Login() {
         <Row style={{ width: "100%", justifyContent: "center" }}>
           <Image src={Logo} preview={false} width={120} />
         </Row>
-        <Typography.Title level={3} style={{ fontWeight: "bold" }}>
+        <Typography.Title
+          level={3}
+          style={{ fontWeight: "bold", color: "#fff" }}
+        >
           ĐĂNG NHẬP
         </Typography.Title>
 
