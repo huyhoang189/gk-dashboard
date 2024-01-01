@@ -8,6 +8,13 @@ import Login from "../pages/auth";
 import Challenges from "../pages/challenges";
 import Successs from "../pages/successs";
 import Configs from "../pages/configs";
+import Thresholds from "../pages/thresholds";
+import Emails from "../pages/emails";
+import Dnss from "../pages/dnss";
+import Databases from "../pages/databases";
+import Histories from "../pages/histories";
+import Backups from "../pages/backups";
+import ElasticSearch from "../pages/elks";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +54,35 @@ export const router = createBrowserRouter([
       {
         path: "nginx",
         element: <Configs />,
+      },
+      {
+        path: "threshold",
+        element: <Thresholds />,
+      },
+      {
+        path: "emails",
+        element: <Emails />,
+      },
+      {
+        path: "dnss",
+        element: <Dnss />,
+      },
+
+      {
+        path: "databases",
+        element: <Databases />,
+      },
+      {
+        path: "histories",
+        element: <Histories />,
+      },
+      {
+        path: "backups",
+        element: <Backups />,
+      },
+      {
+        path: "elks",
+        element: <ElasticSearch />,
       },
     ],
   },

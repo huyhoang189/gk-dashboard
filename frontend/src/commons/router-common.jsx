@@ -11,6 +11,11 @@ const PUBLIC_ROUTER = [
     icon: <HomeOutlined />,
   },
   {
+    key: "elks",
+    label: "Giám sát lưu lượng",
+    icon: <HomeOutlined />,
+  },
+  {
     key: "moniters",
     label: "Giám sát truy vấn",
     icon: <HomeOutlined />,
@@ -22,10 +27,6 @@ const PUBLIC_ROUTER = [
       {
         key: "success",
         label: "success",
-      },
-      {
-        key: "error",
-        label: "error",
       },
     ],
   },
@@ -46,13 +47,38 @@ const PUBLIC_ROUTER = [
         key: "nginx",
         label: "Cấu hình Challenge",
       },
+      {
+        key: "threshold",
+        label: "Ngưỡng cảnh báo",
+      },
+      {
+        key: "dnss",
+        label: "DNS",
+      },
+      {
+        key: "emails",
+        label: "Email",
+      },
     ],
   },
   {
     key: "systems",
     label: "Hệ thống",
     icon: <SettingOutlined />,
-    children: [],
+    children: [
+      {
+        key: "databases",
+        label: "Bảo mật hệ thống",
+      },
+      {
+        key: "histories",
+        label: "Nhật ký hệ thống",
+      },
+      {
+        key: "backups",
+        label: "Sao lưu dữ liệu",
+      },
+    ],
   },
 ];
 

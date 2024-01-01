@@ -6,6 +6,13 @@ const whitelistRoute = require("./whitelist.router");
 const challengeRouter = require("./challenge.router");
 const errorRouter = require("./error.router");
 const successRouter = require("./success.router");
+const configRouter = require("./config.router");
+const thresholdRouter = require("./threshold.router");
+const dnsRouter = require("./dns.router");
+const emailRouter = require("./email.router");
+const databaseRouter = require("./database.router");
+const backupRouter = require("./backup.router");
+
 const router = express.Router();
 
 /**
@@ -26,4 +33,10 @@ router.use("/whitelists", whitelistRoute);
 router.use("/challenges", challengeRouter);
 router.use("/errors", errorRouter);
 router.use("/successs", successRouter);
+router.use("/configs", configRouter);
+router.use("/thresholds", thresholdRouter);
+router.use("/dnss", dnsRouter);
+router.use("/emails", emailRouter);
+router.use("/databases", databaseRouter);
+router.use("/backups", backupRouter);
 module.exports = router;

@@ -6,13 +6,10 @@ const pagination = (req, res, next) => {
 
   let _pageSize = pageSize;
   let _pageNumber = pageNumber;
-  console.log(_pageSize, _pageNumber);
-  // Check if pageSize is provided and is a positive integer
   if (!_pageSize || isNaN(_pageSize) || _pageSize <= 0) {
     _pageSize = 10;
   }
 
-  // Check if pageNumber is provided and is a positive integer
   if (!_pageNumber || isNaN(_pageNumber) || _pageNumber <= 0) {
     _pageNumber = 1;
   }

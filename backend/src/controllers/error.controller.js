@@ -17,7 +17,8 @@ const getAll = async (req, res, next) => {
     pageNumber,
     pageSize,
     keyword,
-    properties && JSON.parse(properties)
+    properties && JSON.parse(properties),
+    "ERROR"
   );
 
   return new Succeed({

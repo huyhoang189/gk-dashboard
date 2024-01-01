@@ -17,6 +17,7 @@ const Sidebar = () => {
         .replace("rc-menu-more\\", "")
         .replace("configs\\", "")
         .replace("moniters\\", "")
+        .replace("systems\\", "")
     );
   };
 

@@ -10,12 +10,13 @@ import {
   theme,
 } from "antd";
 import Sidebar from "./Sidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { LayoutWrapper } from "../assets/styles/layout-style";
 import { UserOutlined } from "@ant-design/icons";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -60,7 +61,7 @@ const MainLayout = () => {
                     // key={uuid()}
                     onClick={() => {
                       // dispatch(authSlice.actions.logout());
-                      // navigate('dang-nhap', { replace: true })
+                      navigate("login", { replace: true });
                     }}
                   >
                     Đăng xuất
