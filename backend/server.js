@@ -4,7 +4,7 @@ const {
 } = require("./src/configs");
 // const swaggerDocs = require("./swagger");
 
-const PORT = port;
+const PORT = 8080;
 
 const server = app.listen(PORT, () => {
   console.log(`Ecommerce start with adress http://localhost:${PORT}`);
