@@ -12,7 +12,12 @@ const Sidebar = () => {
   const onSelectItem = (e) => {
     const path = e?.keyPath.reverse().join("\\");
 
-    navigate(path.replace("rc-menu-more\\", "").replace("configs\\", ""));
+    navigate(
+      path
+        .replace("rc-menu-more\\", "")
+        .replace("configs\\", "")
+        .replace("moniters\\", "")
+    );
   };
 
   return (

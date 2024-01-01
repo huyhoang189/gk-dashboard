@@ -5,6 +5,7 @@ import Backlists from "../pages/blacklists";
 import Whitelists from "../pages/whitelists";
 import Page404 from "../pages/page404";
 import Login from "../pages/auth";
+import Challenges from "../pages/challenges";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: "whitelists",
         element: <Whitelists />,
+      },
+      {
+        path: "challenges",
+        element: <Challenges />,
       },
     ],
   },

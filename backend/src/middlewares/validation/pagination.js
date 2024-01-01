@@ -4,8 +4,9 @@ const { ForbiddenError } = require("../../utils/response/error.response");
 const pagination = (req, res, next) => {
   const { pageSize, pageNumber } = req.query;
 
-  let _pageSize = Object.assign({}, pageSize);
-  let _pageNumber = Object.assign({}, pageNumber);
+  let _pageSize = pageSize;
+  let _pageNumber = pageNumber;
+  console.log(_pageSize, _pageNumber);
   // Check if pageSize is provided and is a positive integer
   if (!_pageSize || isNaN(_pageSize) || _pageSize <= 0) {
     _pageSize = 10;

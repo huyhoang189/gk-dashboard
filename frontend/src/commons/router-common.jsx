@@ -11,20 +11,20 @@ const PUBLIC_ROUTER = [
     icon: <HomeOutlined />,
   },
   {
-    key: "monitering-query",
+    key: "moniters",
     label: "Giám sát truy vấn",
     icon: <HomeOutlined />,
     children: [
       {
-        key: "challenge-log",
+        key: "challenges",
         label: "challenge",
       },
       {
-        key: "success-log",
+        key: "success",
         label: "success",
       },
       {
-        key: "error-log",
+        key: "error",
         label: "error",
       },
     ],
