@@ -11,6 +11,25 @@ const PUBLIC_ROUTER = [
     icon: <HomeOutlined />,
   },
   {
+    key: "monitering-query",
+    label: "Giám sát truy vấn",
+    icon: <HomeOutlined />,
+    children: [
+      {
+        key: "challenge-log",
+        label: "challenge",
+      },
+      {
+        key: "success-log",
+        label: "success",
+      },
+      {
+        key: "error-log",
+        label: "error",
+      },
+    ],
+  },
+  {
     key: "configs",
     label: "Cấu hình",
     icon: <ControlOutlined />,
@@ -18,6 +37,10 @@ const PUBLIC_ROUTER = [
       {
         key: "blacklists",
         label: "Blacklist",
+      },
+      {
+        key: "whitelists",
+        label: "Whitelist",
       },
     ],
   },

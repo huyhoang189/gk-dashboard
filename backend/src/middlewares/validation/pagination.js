@@ -2,30 +2,27 @@ const { StatusCodes, ReasonPhrases } = require("../../utils/httpStatusCode");
 const { ForbiddenError } = require("../../utils/response/error.response");
 
 const pagination = (req, res, next) => {
-  const { page, limit } = req.query;
+  const { pageSize, pageNumber } = req.query;
 
-  // Validate page parameter
-  const pageNumber = parseInt(page, 10) || 1;
-
-  if (pageNumber < 1) {
-    throw new ForbiddenError(
-      "Invalid page number. Page number must be greater than or equal to 1."
-    );
+  let _pageSize = Object.assign({}, pageSize);
+  let _pageNumber = Object.assign({}, pageNumber);
+  // Check if pageSize is provided and is a positive integer
+  if (!_pageSize || isNaN(_pageSize) || _pageSize <= 0) {
+    _pageSize = 10;
   }
 
-  // Validate limit parameter
-  const limitNumber = parseInt(limit, 10) || 10;
-  // console.log(limit);
-  // if (limitNumber > 1 || limitNumber <= 1000) {
-  //   throw new ForbiddenError(
-  //     "Invalid limit value. Limit must be between 1 and 100."
-  //   );
-  // }
+  // Check if pageNumber is provided and is a positive integer
+  if (!_pageNumber || isNaN(_pageNumber) || _pageNumber <= 0) {
+    _pageNumber = 1;
+  }
 
+  // Attach the validated pagination parameters to the request object
   req.pagination = {
-    limit: parseInt(limit || 10),
-    offset: parseInt(page - 1) * limit || 0,
+    pageSize: parseInt(_pageSize),
+    pageNumber: parseInt(_pageNumber),
   };
+
+  // Continue to the next middleware or route handler
   next();
 };
 

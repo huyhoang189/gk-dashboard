@@ -3,6 +3,7 @@ const pagination = require("../middlewares/validation/pagination");
 const checkHealth = require("../middlewares/handler/checkHealth");
 const blacklistRoute = require("./blacklist.router");
 const whitelistRoute = require("./whitelist.router");
+const challengeRouter = require("./challenge.router");
 const router = express.Router();
 
 /**
@@ -20,4 +21,5 @@ router.get("/", checkHealth);
 router.use(pagination);
 router.use("/blacklists", blacklistRoute);
 router.use("/whitelists", whitelistRoute);
+router.use("/challenges", challengeRouter);
 module.exports = router;

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts";
 import Home from "../pages/home";
 import Backlists from "../pages/blacklists";
+import Whitelists from "../pages/whitelists";
 import Page404 from "../pages/page404";
 import Login from "../pages/auth";
 
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "blacklists",
         element: <Backlists />,
+      },
+      {
+        path: "whitelists",
+        element: <Whitelists />,
       },
     ],
   },
