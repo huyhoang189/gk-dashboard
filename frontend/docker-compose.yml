@@ -1,0 +1,9 @@
+version: "3"
+services:
+  fe-page:
+    container_name: fe-page
+    image: fe-page:1.0.0
+    build:
+      context: .
+    ports:
+      - "8081:80"
