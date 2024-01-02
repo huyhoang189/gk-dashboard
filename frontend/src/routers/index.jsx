@@ -16,6 +16,7 @@ import Histories from "../pages/histories";
 import Backups from "../pages/backups";
 import ElasticSearch from "../pages/elks";
 import Roles from "../pages/roles";
+import Users from "../pages/users";
 
 export const router = createBrowserRouter([
   {
@@ -30,12 +31,12 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />,
+        element: <Challenges />,
       },
-      {
-        path: "home",
-        element: <Home />,
-      },
+      // {
+      //   path: "home",
+      //   element: <Challenges />,
+      // },
       {
         path: "blacklists",
         element: <Backlists />,
@@ -88,6 +89,10 @@ export const router = createBrowserRouter([
       {
         path: "roles",
         element: <Roles />,
+      },
+      {
+        path: "users",
+        element: <Users />,
       },
     ],
   },

@@ -13,17 +13,25 @@ import Sidebar from "./sidebar";
 import { Outlet, useNavigate } from "react-router-dom";
 import { LayoutWrapper } from "../assets/styles/layout-style";
 import { UserOutlined } from "@ant-design/icons";
+import authSlice from "../toolkits/auth/slice";
+import { useDispatch, useSelector } from "react-redux";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  const { user } = useSelector((state) => state.auths);
 
   useEffect(() => {
     window.document.title = "Anti-DDOS";
   }, [window.location.pathname]);
+
+  useEffect(() => {
+    dispatch(authSlice.actions.checkAuthentication());
+  }, [dispatch]);
 
   return (
     <LayoutWrapper
@@ -31,7 +39,7 @@ const MainLayout = () => {
         minHeight: "100vh",
       }}
     >
-      <Sidebar />
+      <Sidebar user={user} />
 
       <Layout>
         <Header
@@ -57,16 +65,8 @@ const MainLayout = () => {
                   <Menu.Item
                     // key={uuid()}
                     onClick={() => {
-                      // dispatch(authSlice.actions.toggleModal(null));
-                    }}
-                  >
-                    Thông tin cá nhân
-                  </Menu.Item>
-                  <Menu.Item
-                    // key={uuid()}
-                    onClick={() => {
-                      // dispatch(authSlice.actions.logout());
-                      navigate("login", { replace: true });
+                      dispatch(authSlice.actions.logout());
+                      // navigate("login", { replace: true });
                     }}
                   >
                     Đăng xuất
@@ -78,7 +78,7 @@ const MainLayout = () => {
             >
               <Space size={8} style={{ height: 50 }}>
                 <Avatar icon={<UserOutlined />} size={30} />
-                <h3>Administrators</h3>
+                <h3>{user?.username}</h3>
               </Space>
             </Popover>
           </Flex>

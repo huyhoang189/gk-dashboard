@@ -1,24 +1,26 @@
 import {
+  AimOutlined,
+  BlockOutlined,
   ControlOutlined,
   HomeOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
 const PUBLIC_ROUTER = [
-  {
-    key: "home",
-    label: "Trang chủ",
-    icon: <HomeOutlined />,
-  },
+  // {
+  //   key: "home",
+  //   label: "Trang chủ",
+  //   icon: <HomeOutlined />,
+  // },
   {
     key: "elks",
     label: "Giám sát lưu lượng",
-    icon: <HomeOutlined />,
+    icon: <BlockOutlined />,
   },
   {
     key: "moniters",
     label: "Giám sát truy vấn",
-    icon: <HomeOutlined />,
+    icon: <AimOutlined />,
     children: [
       {
         key: "challenges",
@@ -77,6 +79,10 @@ const PUBLIC_ROUTER = [
       {
         key: "backups",
         label: "Sao lưu dữ liệu",
+      },
+      {
+        key: "users",
+        label: "Người dùng",
       },
       {
         key: "roles",

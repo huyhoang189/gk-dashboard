@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import bg from "../../assets/img/3043140.jpg";
 const { Sider } = Layout;
-const Sidebar = () => {
+const Sidebar = ({ user }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
 
@@ -20,6 +20,19 @@ const Sidebar = () => {
         .replace("systems\\", "")
     );
   };
+
+  let publicRouter = [];
+
+  if (user?.roles !== undefined) {
+    publicRouter =
+      user.roles?.permission === "ADMIN"
+        ? PUBLIC_ROUTER
+        : PUBLIC_ROUTER.filter(
+            (e) => e.key !== "systems" && e.key !== "configs"
+          );
+  } else {
+    // console.log("user null");
+  }
 
   return (
     <Sider
@@ -40,7 +53,7 @@ const Sidebar = () => {
         style={{ opacity: 0.9, backgroundColor: "#192655" }}
         theme="dark"
         mode="inline"
-        items={PUBLIC_ROUTER}
+        items={publicRouter}
         onClick={onSelectItem}
       />
     </Sider>

@@ -4,15 +4,23 @@ const api = createAPIServices();
 
 export const getAll = (payload) => {
   return api.makeRequestUnauthorized({
-    url: `/roles`,
+    url: `/users`,
     method: "GET",
+    data: payload,
+  });
+};
+
+export const login = (payload) => {
+  return api.makeRequestUnauthorized({
+    url: `/users/login`,
+    method: "POST",
     data: payload,
   });
 };
 
 export const create = (payload) => {
   return api.makeRequestUnauthorized({
-    url: `/roles`,
+    url: `/users`,
     method: "POST",
     data: payload,
   });
@@ -20,7 +28,7 @@ export const create = (payload) => {
 
 export const update = (payload) => {
   return api.makeRequestUnauthorized({
-    url: `/roles`,
+    url: `/users`,
     method: "PUT",
     data: payload,
   });
@@ -28,7 +36,7 @@ export const update = (payload) => {
 
 export const deleteItem = (payload) => {
   return api.makeRequestUnauthorized({
-    url: `/roles/${payload.id}`,
+    url: `/users/${payload.id}`,
     method: "DELETE",
   });
 };

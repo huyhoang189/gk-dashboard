@@ -12,6 +12,7 @@ const TextInput = ({
   disable = false,
   type = "text",
   status = "",
+  isPassword = false,
 }) => {
   return (
     <Space
@@ -22,18 +23,33 @@ const TextInput = ({
         {title}
         {isNull === false ? <span style={{ color: "red" }}>(*)</span> : ""}
       </Typography.Text>
-      <Input
-        placeholder={placeholder}
-        value={
-          type === "date"
-            ? convertDateToString(value, DATE_FORMAT.YYYYMMDD)
-            : value
-        }
-        onChange={(e) => onChange(property, e)}
-        disabled={disable}
-        type={type}
-        status={status}
-      />
+      {isPassword ? (
+        <Input.Password
+          placeholder={placeholder}
+          value={
+            type === "date"
+              ? convertDateToString(value, DATE_FORMAT.YYYYMMDD)
+              : value
+          }
+          onChange={(e) => onChange(property, e)}
+          disabled={disable}
+          type={type}
+          status={status}
+        />
+      ) : (
+        <Input
+          placeholder={placeholder}
+          value={
+            type === "date"
+              ? convertDateToString(value, DATE_FORMAT.YYYYMMDD)
+              : value
+          }
+          onChange={(e) => onChange(property, e)}
+          disabled={disable}
+          type={type}
+          status={status}
+        />
+      )}
     </Space>
   );
 };

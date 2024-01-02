@@ -5,6 +5,7 @@ const {
 } = require("../utils/response/error.response");
 // Import the Prisma client
 const { PrismaClient } = require("@prisma/client");
+const bcrypt = require("bcrypt");
 const prisma = new PrismaClient();
 
 const getAll = async (req, res, next) => {
@@ -12,8 +13,11 @@ const getAll = async (req, res, next) => {
   const { pageSize, pageNumber } = req.pagination;
 
   const users = await prisma.users.findMany({
-    include: {
-      roles: true, // Include the "roles" relation
+    select: {
+      user_id: true,
+      username: true,
+      role_id: true,
+      roles: true,
     },
   });
 
@@ -27,8 +31,13 @@ const getAll = async (req, res, next) => {
 
 const create = async (req, res, next) => {
   const { username, password, role_id } = req.body;
+
+  // Generate a salt and hash the password
+  const saltRounds = 10; // Number of salt rounds (adjust as needed)
+  const hashedPassword = bcrypt.hashSync(password, saltRounds);
+
   const user = await prisma.users.create({
-    data: { username, password, role_id },
+    data: { username, password: hashedPassword, role_id },
   });
   return new Created({
     message: "Create users successfully",
@@ -70,9 +79,34 @@ const deleteItem = async (req, res, next) => {
   }).send(res);
 };
 
+const login = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  const user = await prisma.users.findUnique({
+    where: { username: username },
+    include: { roles: true },
+  });
+  if (!user) throw new NotFoundError("Not found user");
+
+  // Compare the provided password with the hashed password in the database
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatch) {
+    throw new NotFoundError("Invalid password");
+  }
+
+  return new Succeed({
+    message: "Login successfully",
+    metadata: {
+      data: user,
+    },
+  }).send(res);
+};
+
 module.exports = {
   getAll,
   create,
   update,
   deleteItem,
+  login,
 };

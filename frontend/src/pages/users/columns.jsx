@@ -1,4 +1,4 @@
-export const roleColumns = [
+export const userColumns = [
   {
     title: "STT",
     dataIndex: "key",
@@ -7,18 +7,18 @@ export const roleColumns = [
     align: "center",
   },
   {
-    title: "Nhóm quyền",
-    dataIndex: "name",
-    key: "name",
+    title: "Tên tài khoản",
+    dataIndex: "username",
+    key: "username",
     align: "center",
   },
   {
-    title: "Quyền",
+    title: "Nhóm quyền",
     dataIndex: "permission",
     key: "permission",
     align: "center",
     render: (text, record) => {
-      return text === "ADMIN" ? "Quản trị hệ thống" : "Trực giám sát";
+      return record?.roles?.name;
     },
   },
 ];

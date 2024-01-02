@@ -15,21 +15,22 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import bgLogin from "../../assets/img/3043140.jpg";
 import Logo from "../../assets/img/logo.png";
+import authSlice from "../../toolkits/auth/slice";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  //   const { errorMessage } = useSelector((state) => state.auths);
+  const { errorMessage } = useSelector((state) => state.auths);
 
   const onSubmit = () => {
-    // dispatch(
-    //   authSlice.actions.login({
-    //     loginAccount: username,
-    //     loginPassword: password,
-    //   })
-    // );
+    dispatch(
+      authSlice.actions.login({
+        username: username,
+        password: password,
+      })
+    );
   };
 
   return (
@@ -81,10 +82,10 @@ export default function Login() {
             }}
             value={password}
           />
-          {/* <Typography.Text style={{ color: 'red' }}>
-              Tài khoản không chính xác
-            </Typography.Text> */}
-          <Button block type="primary">
+          {errorMessage !== false && (
+            <Typography.Text type="danger">{errorMessage}</Typography.Text>
+          )}
+          <Button block type="primary" onClick={onSubmit}>
             Đăng nhập
           </Button>
         </Space>

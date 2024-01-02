@@ -12,7 +12,7 @@ const pageHeader = {
       title: "Trang chủ",
     },
     {
-      title: "Giám sát lưu lượng",
+      title: "Giám sát truy vấn",
     },
     {
       title: "Danh sách Success Logs",
