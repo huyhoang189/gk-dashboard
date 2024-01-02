@@ -71,4 +71,8 @@ export const LayoutWrapper = styled(Layout)`
     font-weight: bold;
     font-size: 11px;
   }
+
+  .ant-menu-item ant-menu-item-selected ant-menu-item-only-child {
+    padding-left: 20px !important;
+  }
 `;
