@@ -11,54 +11,58 @@ const getAll = async (req, res, next) => {
   const { keyword, properties } = req.query;
   const { pageSize, pageNumber } = req.pagination;
 
-  const roles = await prisma.roles.findMany();
+  const departments = await prisma.departments.findMany({
+    include: { departments: true },
+  });
 
   return new Succeed({
-    message: "Get roles successfully",
+    message: "Get departments successfully",
     metadata: {
-      data: roles,
+      data: departments,
     },
   }).send(res);
 };
 
 const create = async (req, res, next) => {
-  const { name, permissions } = req.body;
-  const role = await prisma.roles.create({
-    data: { name, permissions },
+  const { name, identification, description, parent_id } = req.body;
+  const department = await prisma.departments.create({
+    data: { name, identification, description, parent_id },
   });
   return new Created({
-    message: "Create roles successfully",
+    message: "Create departments successfully",
     metadata: {
-      data: role,
+      data: department,
     },
   }).send(res);
 };
 
 const update = async (req, res, next) => {
-  const { id, name, permissions } = req.body;
-  const role = await prisma.roles.update({
+  const { id, name, identification, description, parent_id } = req.body;
+  const department = await prisma.departments.update({
     where: { id: id },
     data: {
       name,
-      permissions,
+      identification,
+      description,
+      parent_id,
     },
   });
 
   return new Succeed({
-    message: "Update roles successfully",
+    message: "Update departments successfully",
     metadata: {
-      data: role,
+      data: department,
     },
   }).send(res);
 };
 
 const deleteItem = async (req, res, next) => {
   const id = parseInt(req.params.id);
-  await prisma.roles.delete({
+  await prisma.departments.delete({
     where: { id },
   });
   return new Succeed({
-    message: "Delete roles successfully",
+    message: "Delete departments successfully",
     metadata: {
       data: {},
     },

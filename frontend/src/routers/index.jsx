@@ -17,6 +17,7 @@ import Backups from "../pages/backups";
 import ElasticSearch from "../pages/elks";
 import Roles from "../pages/roles";
 import Users from "../pages/users";
+import Departments from "../pages/departments";
 
 export const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ export const router = createBrowserRouter([
       {
         path: "users",
         element: <Users />,
+      },
+      {
+        path: "departments",
+        element: <Departments />,
       },
     ],
   },

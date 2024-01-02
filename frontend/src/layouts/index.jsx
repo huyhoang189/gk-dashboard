@@ -78,7 +78,7 @@ const MainLayout = () => {
             >
               <Space size={8} style={{ height: 50 }}>
                 <Avatar icon={<UserOutlined />} size={30} />
-                <h3>{user?.username}</h3>
+                <h3>{user?.name}</h3>
               </Space>
             </Popover>
           </Flex>

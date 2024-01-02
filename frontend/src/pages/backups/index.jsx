@@ -83,7 +83,7 @@ const Backups = () => {
           style={{
             width: "100%",
           }}
-          value={selectedBackup.time}
+          value={selectedBackup?.time}
           onChange={(e) => onTextInputChange("time", e)}
         />
       ),

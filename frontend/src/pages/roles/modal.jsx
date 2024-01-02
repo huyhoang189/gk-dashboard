@@ -45,11 +45,11 @@ export default function ModalItem() {
       open={modalActive}
       onCancel={() => handleModal(null)}
       onOk={
-        selectedRole?.role_id
+        selectedRole?.id
           ? () => handleRecord(ACTION_NAME.UPDATE, selectedRole)
           : () => handleRecord(ACTION_NAME.CREATE, selectedRole)
       }
-      title={selectedRole?.role_id ? "Cập nhật dữ liệu" : "Thêm mới dữ liệu"}
+      title={selectedRole?.id ? "Cập nhật dữ liệu" : "Thêm mới dữ liệu"}
       okText="Chấp nhận"
       cancelText="Từ chối"
     >
@@ -65,8 +65,8 @@ export default function ModalItem() {
         title="Quyền"
         // placeholder="Nhập vào tên nhóm quyền"
         onChange={onRecordSelectedChange}
-        property={"permission"}
-        value={selectedRole?.permission}
+        property={"permissions"}
+        value={selectedRole?.permissions}
         options={[
           {
             value: "ADMIN",

@@ -17,6 +17,7 @@ import backupSlice from "./backups/slice";
 import roleSlice from "./roles/slice";
 import userSlice from "./users/slice";
 import authSlice from "./auth/slice";
+import departmentSlice from "./departments/slice";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [
@@ -41,6 +42,7 @@ export const store = configureStore({
     roles: roleSlice.reducer,
     users: userSlice.reducer,
     auths: authSlice.reducer,
+    departments: departmentSlice.reducer,
   },
   middleware,
 });

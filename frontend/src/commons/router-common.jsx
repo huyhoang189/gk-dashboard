@@ -88,6 +88,10 @@ const PUBLIC_ROUTER = [
         key: "roles",
         label: "Nhóm quyền",
       },
+      {
+        key: "departments",
+        label: "Đơn vị",
+      },
     ],
   },
 ];

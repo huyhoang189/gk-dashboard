@@ -25,7 +25,7 @@ const Sidebar = ({ user }) => {
 
   if (user?.roles !== undefined) {
     publicRouter =
-      user.roles?.permission === "ADMIN"
+      user.roles?.permissions === "ADMIN"
         ? PUBLIC_ROUTER
         : PUBLIC_ROUTER.filter(
             (e) => e.key !== "systems" && e.key !== "configs"

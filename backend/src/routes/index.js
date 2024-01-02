@@ -14,6 +14,7 @@ const databaseRouter = require("./database.router");
 const backupRouter = require("./backup.router");
 const roleRouter = require("./role.router");
 const userRouter = require("./user.router");
+const departmentRouter = require("./department.router");
 
 const router = express.Router();
 
@@ -43,4 +44,5 @@ router.use("/databases", databaseRouter);
 router.use("/backups", backupRouter);
 router.use("/roles", roleRouter);
 router.use("/users", userRouter);
+router.use("/departments", departmentRouter);
 module.exports = router;

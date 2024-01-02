@@ -30,7 +30,7 @@ function* _handleItem({ payload }) {
     } else if (actionName === ACTION_NAME.UPDATE) {
       ({ data, status } = yield call(update, item));
     } else if (actionName === ACTION_NAME.DELETE) {
-      ({ data, status } = yield call(deleteItem, { id: item.role_id }));
+      ({ data, status } = yield call(deleteItem, { id: item.id }));
     }
 
     const isSuccess = status === 200 || status === 201;

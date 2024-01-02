@@ -4,6 +4,7 @@ import { Button, Divider, Typography } from "antd";
 import { useEffect } from "react";
 import userSlice from "../../toolkits/users/slice";
 import roleSlice from "../../toolkits/roles/slice";
+import departmentSlice from "../../toolkits/departments/slice";
 import TextInput from "../../components/Form/text-input";
 import { ACTION_NAME } from "../../commons/constants";
 export default function ModalItem() {
@@ -11,6 +12,7 @@ export default function ModalItem() {
 
   const { modalActive, selectedUser } = useSelector((state) => state.users);
   const { roles } = useSelector((state) => state.roles);
+  const { departments } = useSelector((state) => state.departments);
 
   const handleModal = (_item) => {
     dispatch(userSlice.actions.toggleModal(_item));
@@ -45,6 +47,7 @@ export default function ModalItem() {
   useEffect(() => {
     if (modalActive) {
       dispatch(roleSlice.actions.getRoles());
+      dispatch(departmentSlice.actions.getDepartments());
     }
   }, [modalActive]);
 
@@ -53,7 +56,7 @@ export default function ModalItem() {
       open={modalActive}
       onCancel={() => handleModal(null)}
       onOk={
-        selectedUser?.user_id
+        selectedUser?.id
           ? () => handleRecord(ACTION_NAME.UPDATE, selectedUser)
           : () => handleRecord(ACTION_NAME.CREATE, selectedUser)
       }
@@ -61,6 +64,13 @@ export default function ModalItem() {
       okText="Chấp nhận"
       cancelText="Từ chối"
     >
+      <TextInput
+        title="Tên đầy đủ"
+        placeholder="Nhập vào tên người dùng"
+        onChange={onRecordInputChange}
+        property={"name"}
+        value={selectedUser?.name}
+      />
       <TextInput
         title="Tên tài khoản"
         placeholder="Nhập vào tên tài khoản"
@@ -78,6 +88,23 @@ export default function ModalItem() {
         isPassword={true}
       />
 
+      <TextInput
+        title="Mô tả"
+        placeholder="Nhập vào mô tả"
+        onChange={onRecordInputChange}
+        property={"description"}
+        value={selectedUser?.description}
+      />
+
+      <SelectInput
+        title="Đơn vị"
+        // placeholder="Nhập vào tên nhóm quyền"
+        onChange={onRecordSelectedChange}
+        property={"department_id"}
+        value={selectedUser?.department_id}
+        options={departments.map((e) => ({ value: e?.id, label: e?.name }))}
+      />
+
       <SelectInput
         title="Quyền"
         // placeholder="Nhập vào tên nhóm quyền"
@@ -85,7 +112,7 @@ export default function ModalItem() {
         property={"role_id"}
         value={selectedUser?.role_id}
         options={roles.map((e) => ({
-          value: e.role_id,
+          value: e.id,
           label: e.name,
         }))}
       />

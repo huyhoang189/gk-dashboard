@@ -14,8 +14,8 @@ export const roleColumns = [
   },
   {
     title: "Quyền",
-    dataIndex: "permission",
-    key: "permission",
+    dataIndex: "permissions",
+    key: "permissions",
     align: "center",
     render: (text, record) => {
       return text === "ADMIN" ? "Quản trị hệ thống" : "Trực giám sát";

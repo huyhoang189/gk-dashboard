@@ -1,4 +1,4 @@
-export const userColumns = [
+export const departmentColumns = [
   {
     title: "STT",
     dataIndex: "key",
@@ -7,15 +7,15 @@ export const userColumns = [
     align: "center",
   },
   {
-    title: "Tên người dùng",
+    title: "Tên đơn vị",
     dataIndex: "name",
     key: "name",
     align: "center",
   },
   {
-    title: "Tên tài khoản",
-    dataIndex: "username",
-    key: "username",
+    title: "Mã đơn vị",
+    dataIndex: "identification",
+    key: "identification",
     align: "center",
   },
   {
@@ -25,21 +25,12 @@ export const userColumns = [
     align: "center",
   },
   {
-    title: "Đơn vị",
-    dataIndex: "department",
-    key: "department",
+    title: "Đơn vị cha",
+    dataIndex: "parent",
+    key: "parent",
     align: "center",
     render: (text, record) => {
       return record?.departments?.name;
-    },
-  },
-  {
-    title: "Nhóm quyền",
-    dataIndex: "permission",
-    key: "permission",
-    align: "center",
-    render: (text, record) => {
-      return record?.roles?.name;
     },
   },
 ];

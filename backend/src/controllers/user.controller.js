@@ -14,10 +14,14 @@ const getAll = async (req, res, next) => {
 
   const users = await prisma.users.findMany({
     select: {
-      user_id: true,
+      id: true,
+      name: true,
+      description: true,
       username: true,
       role_id: true,
       roles: true,
+      department_id: true,
+      departments: true,
     },
   });
 
@@ -30,14 +34,22 @@ const getAll = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
-  const { username, password, role_id } = req.body;
+  const { username, password, role_id, name, description, department_id } =
+    req.body;
 
   // Generate a salt and hash the password
   const saltRounds = 10; // Number of salt rounds (adjust as needed)
-  const hashedPassword = bcrypt.hashSync(password, saltRounds);
+  const hashedPassword = bcrypt.hashSync(password || "123456", saltRounds);
 
   const user = await prisma.users.create({
-    data: { username, password: hashedPassword, role_id },
+    data: {
+      username,
+      role_id,
+      name,
+      description,
+      department_id,
+      password: hashedPassword,
+    },
   });
   return new Created({
     message: "Create users successfully",
@@ -48,15 +60,34 @@ const create = async (req, res, next) => {
 };
 
 const update = async (req, res, next) => {
-  const { username, password, role_id, user_id } = req.body;
-  const user = await prisma.users.update({
-    where: { user_id },
-    data: {
-      username,
-      password,
-      role_id,
-    },
-  });
+  const { password, role_id, name, description, department_id, id } = req.body;
+
+  let user = null;
+  if (password) {
+    // Generate a salt and hash the password
+    const saltRounds = 10; // Number of salt rounds (adjust as needed)
+    const hashedPassword = bcrypt.hashSync(password || "123456", saltRounds);
+    user = await prisma.users.update({
+      where: { id },
+      data: {
+        role_id,
+        name,
+        description,
+        department_id,
+        password: hashedPassword,
+      },
+    });
+  } else {
+    user = await prisma.users.update({
+      where: { id },
+      data: {
+        role_id,
+        name,
+        description,
+        department_id,
+      },
+    });
+  }
 
   return new Succeed({
     message: "Update users successfully",
@@ -67,9 +98,10 @@ const update = async (req, res, next) => {
 };
 
 const deleteItem = async (req, res, next) => {
-  const user_id = parseInt(req.params.id);
+  const id = req.params.id;
+
   await prisma.users.delete({
-    where: { user_id },
+    where: { id },
   });
   return new Succeed({
     message: "Delete users successfully",
@@ -82,10 +114,11 @@ const deleteItem = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { username, password } = req.body;
 
-  const user = await prisma.users.findUnique({
+  const user = await prisma.users.findFirst({
     where: { username: username },
     include: { roles: true },
   });
+
   if (!user) throw new NotFoundError("Not found user");
 
   // Compare the provided password with the hashed password in the database
