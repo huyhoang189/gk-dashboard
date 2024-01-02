@@ -20,6 +20,11 @@ const MainLayout = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  useEffect(() => {
+    window.document.title = "Anti-DDOS";
+  }, [window.location.pathname]);
+
   return (
     <LayoutWrapper
       style={{
