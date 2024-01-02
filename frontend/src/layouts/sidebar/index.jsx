@@ -39,18 +39,18 @@ const Sidebar = ({ user }) => {
       collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
-      style={{
-        background: `url(${bg})`, // Replace with the actual path to your image
-        backgroundSize: "cover", // Adjust as needed
-        backgroundRepeat: "no-repeat", // Adjust as needed
-        backgroundPosition: "bottom right", // Adjust as needed
-      }}
+      // style={{
+      //   background: `url(${bg})`, // Replace with the actual path to your image
+      //   backgroundSize: "cover", // Adjust as needed
+      //   backgroundRepeat: "no-repeat", // Adjust as needed
+      //   backgroundPosition: "bottom right", // Adjust as needed
+      // }}
     >
       <div style={{ padding: "10px 60px" }}>
         <Image src={logo} preview={false} />
       </div>
       <Menu
-        style={{ opacity: 0.9, backgroundColor: "#192655" }}
+        style={{}}
         theme="dark"
         mode="inline"
         items={publicRouter}
