@@ -14,6 +14,7 @@ import dnsSlice from "./dnss/slice";
 import databaseSlice from "./databases/slice";
 import historySlice from "./histories/slice";
 import backupSlice from "./backups/slice";
+import roleSlice from "./roles/slice";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [
@@ -35,6 +36,7 @@ export const store = configureStore({
     databases: databaseSlice.reducer,
     histories: historySlice.reducer,
     backups: backupSlice.reducer,
+    roles: roleSlice.reducer,
   },
   middleware,
 });

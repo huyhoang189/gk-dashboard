@@ -10,6 +10,7 @@ import dnsSaga from "./dnss/saga";
 import databaseSaga from "./databases/saga";
 import historySaga from "./histories/saga";
 import backupSaga from "./backups/saga";
+import roleSaga from "./roles/saga";
 export default function* rootSaga() {
   yield all([
     blacklistSaga(),
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     databaseSaga(),
     historySaga(),
     backupSaga(),
+    roleSaga(),
   ]);
 }

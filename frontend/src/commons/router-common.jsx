@@ -78,6 +78,10 @@ const PUBLIC_ROUTER = [
         key: "backups",
         label: "Sao lưu dữ liệu",
       },
+      {
+        key: "roles",
+        label: "Nhóm quyền",
+      },
     ],
   },
 ];

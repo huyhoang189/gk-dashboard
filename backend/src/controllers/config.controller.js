@@ -97,9 +97,12 @@ const updateNginxConf = async (data) => {
           let value = parseInt(match[1]) || match[1];
 
           if (value !== data[key]) {
+            console.log();
             updateConfigs = updateConfigs.replace(
               pattern,
-              `set ${fields[key]} ${data[key]};`
+              `set ${fields[key]} ${
+                parseInt(data[key]) ? data[key] : `"${data[key]}"`
+              };`
             );
           }
         }

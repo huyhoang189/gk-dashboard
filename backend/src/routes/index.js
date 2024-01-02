@@ -12,6 +12,8 @@ const dnsRouter = require("./dns.router");
 const emailRouter = require("./email.router");
 const databaseRouter = require("./database.router");
 const backupRouter = require("./backup.router");
+const roleRouter = require("./role.router");
+const userRouter = require("./user.router");
 
 const router = express.Router();
 
@@ -39,4 +41,6 @@ router.use("/dnss", dnsRouter);
 router.use("/emails", emailRouter);
 router.use("/databases", databaseRouter);
 router.use("/backups", backupRouter);
+router.use("/roles", roleRouter);
+router.use("/users", userRouter);
 module.exports = router;

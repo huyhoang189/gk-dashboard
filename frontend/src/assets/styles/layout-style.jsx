@@ -65,4 +65,10 @@ export const LayoutWrapper = styled(Layout)`
     padding: 4px 11px;
     border: 1px solid #d9d9d9;
   }
+
+  .ant-menu-title-content {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 11px;
+  }
 `;
