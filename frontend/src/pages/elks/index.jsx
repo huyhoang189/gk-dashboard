@@ -23,7 +23,7 @@ const ElasticSearch = () => {
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
       <iframe
-        src="http://10.32.201.151:5601/"
+        src="http://sqlq2.local:5601/"
         style={{ width: "100%", height: "1100px" }}
       />
     </div>
