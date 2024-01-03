@@ -2,57 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Breadcrumb, CreateButton } from "../../components";
 import { useEffect } from "react";
 import databaseSlice from "../../toolkits/databases/slice";
-import {
-  Table,
-  Select,
-  Input,
-  Row,
-  Flex,
-  InputNumber,
-  notification,
-} from "antd";
+import { Table, Select, Input, Row, Flex, InputNumber } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 
 const FIELDS = {
-  SECURITY_LEVEL: "security_level",
-  MAX_QUERIES_PER_HOUR: "max_queries_per_hour",
-  MAX_UPDATE_PER_HOUR: "max_update_per_hour",
-  LIMIT_RECORDS_PER_QUERY: "limit_records_per_query",
-};
-
-const THRESHOLD = {
-  MAX_QUERIES_PER_HOUR: {
-    1: "2000",
-    2: "1000",
-    3: "500",
-  },
-  MAX_UPDATE_PER_HOUR: {
-    1: "20",
-    2: "15",
-    3: "10",
-  },
-  LIMIT_RECORDS_PER_QUERY: {
-    1: "1500",
-    2: "1000",
-    3: "500",
-  },
-};
-
-const getThreshold = (type, level = 1) => {
-  return THRESHOLD[type][level];
-};
-
-const checkItemCorrect = (item) => {
-  const securityLevel = item["SECURITY_LEVEL"];
-  return (
-    item["MAX_QUERIES_PER_HOUR"] <=
-      getThreshold("MAX_QUERIES_PER_HOUR", securityLevel) &&
-    item["MAX_UPDATE_PER_HOUR"] <=
-      getThreshold("MAX_UPDATE_PER_HOUR", securityLevel) &&
-    item["LIMIT_RECORDS_PER_QUERY"] <=
-      getThreshold("LIMIT_RECORDS_PER_QUERY", securityLevel)
-  );
+  MAX_CONNECTIONS_PER_HOUR: "max_connections_per_hour",
+  SESSION_TIME_EXPIRED: "session_time_expired",
 };
 
 const pageHeader = {
@@ -65,7 +21,7 @@ const pageHeader = {
       title: "Bảo mật và sao lưu",
     },
     {
-      title: "Bảo mật hệ thống",
+      title: "Bảo mật cơ sở dữ liệu",
     },
   ],
 };
@@ -108,93 +64,28 @@ const Databases = () => {
 
   const databases = [
     {
-      variable: FIELDS.SECURITY_LEVEL,
-      name: "Mức độ bảo mật",
-      value: (
-        <Select
-          style={{
-            width: "100%",
-          }}
-          value={selectedDatabase["SECURITY_LEVEL"]}
-          onChange={(e) => onSelectedInputChange("SECURITY_LEVEL", e)}
-          options={[
-            {
-              value: 1,
-              label: "Thấp",
-            },
-            {
-              value: 2,
-              label: "Trung bình",
-            },
-            {
-              value: 3,
-              label: "Cao",
-            },
-          ]}
-        />
-      ),
-    },
-    {
-      variable: FIELDS.MAX_QUERIES_PER_HOUR,
-      name: `Giới hạn số truy vấn mỗi giờ < ${getThreshold(
-        "MAX_QUERIES_PER_HOUR",
-        selectedDatabase["SECURITY_LEVEL"]
-      )}`,
+      variable: FIELDS.MAX_CONNECTIONS_PER_HOUR,
+      name: "Giời hạn kết nối mỗi giờ",
       value: (
         <InputNumber
           style={{
             width: "100%",
           }}
-          value={selectedDatabase["MAX_QUERIES_PER_HOUR"]}
-          onChange={(e) => onTextInputChange("MAX_QUERIES_PER_HOUR", e)}
-          min={0}
-          max={getThreshold(
-            "MAX_QUERIES_PER_HOUR",
-            selectedDatabase["SECURITY_LEVEL"]
-          )}
+          value={selectedDatabase["MAX_CONNECTIONS_PER_HOUR"]}
+          onChange={(e) => onTextInputChange("MAX_CONNECTIONS_PER_HOUR", e)}
         />
       ),
     },
     {
-      variable: FIELDS.MAX_UPDATE_PER_HOUR,
-      name: `Giới hạn cập nhật mỗi giờ < ${getThreshold(
-        "MAX_UPDATE_PER_HOUR",
-        selectedDatabase["SECURITY_LEVEL"]
-      )}`,
+      variable: FIELDS.SESSION_TIME_EXPIRED,
+      name: "Thời gian Database",
       value: (
         <InputNumber
           style={{
             width: "100%",
           }}
-          value={selectedDatabase["MAX_UPDATE_PER_HOUR"]}
-          onChange={(e) => onTextInputChange("MAX_UPDATE_PER_HOUR", e)}
-          min={0}
-          max={getThreshold(
-            "MAX_UPDATE_PER_HOUR",
-            selectedDatabase["SECURITY_LEVEL"]
-          )}
-        />
-      ),
-    },
-
-    {
-      variable: FIELDS.LIMIT_RECORDS_PER_QUERY,
-      name: `Giới hạn số lượng bản ghi cho mỗi truy vấn < ${getThreshold(
-        "LIMIT_RECORDS_PER_QUERY",
-        selectedDatabase["SECURITY_LEVEL"]
-      )}`,
-      value: (
-        <InputNumber
-          style={{
-            width: "100%",
-          }}
-          value={selectedDatabase["LIMIT_RECORDS_PER_QUERY"]}
-          onChange={(e) => onTextInputChange("LIMIT_RECORDS_PER_QUERY", e)}
-          min={0}
-          max={getThreshold(
-            "LIMIT_RECORDS_PER_QUERY",
-            selectedDatabase["SECURITY_LEVEL"]
-          )}
+          value={selectedDatabase["SESSION_TIME_EXPIRED"]}
+          onChange={(e) => onTextInputChange("SESSION_TIME_EXPIRED", e)}
         />
       ),
     },
@@ -225,16 +116,6 @@ const Databases = () => {
 
   const handleRecord = (actionName, _item) => {
     let item = Object.assign({}, _item);
-
-    const status = checkItemCorrect(item);
-    if (!status) {
-      notification.error({
-        message: "LỖI",
-        description: "Cập nhật cấu hình không thành công! Kiểm tra lại tham số",
-      });
-      return;
-    }
-
     dispatch(
       databaseSlice.actions.handleDatabase({
         item: item,

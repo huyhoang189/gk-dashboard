@@ -73,13 +73,14 @@ const PUBLIC_ROUTER = [
     icon: <SettingOutlined />,
     children: [
       {
-        key: "databases",
+        key: "sessions",
         label: "Bảo mật hệ thống",
       },
       {
-        key: "sessions",
+        key: "databases",
         label: "Bảo mật CSDL",
       },
+
       {
         key: "histories",
         label: "Nhật ký hệ thống",
