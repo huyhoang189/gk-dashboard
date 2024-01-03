@@ -92,17 +92,17 @@ const Backups = () => {
       value: selectedBackup?.cfg_path,
     },
     {
-      name: "Thời gian cập nhật",
+      name: "Thời gian tạo tệp tin sao lưu",
       value: parseDate(selectedBackup?.mtime) || "",
     },
-    {
-      name: "Thời gian sửa đổi",
-      value: parseDate(selectedBackup?.ctime) || "",
-    },
-    {
-      name: "Thời gian tạo",
-      value: parseDate(selectedBackup?.birthtime) || "",
-    },
+    // {
+    //   name: "Thời gian sửa đổi",
+    //   value: parseDate(selectedBackup?.ctime) || "",
+    // },
+    // {
+    //   name: "Thời gian tạo",
+    //   value: parseDate(selectedBackup?.birthtime) || "",
+    // },
   ];
 
   const dataSource = backups.map((e, i) => ({ key: i + 1, ...e }));
