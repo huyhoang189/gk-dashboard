@@ -33,6 +33,13 @@ export default function Login() {
     );
   };
 
+  const handleKeyPress = (e) => {
+    // Check if the "Enter" key was pressed
+    if (e.key === "Enter") {
+      onSubmit(); // Trigger form submission
+    }
+  };
+
   return (
     <div
       style={{
@@ -66,7 +73,6 @@ export default function Login() {
         >
           ĐĂNG NHẬP
         </Typography.Title>
-
         <Space direction="vertical" style={{ width: "100%" }} size={(10, 10)}>
           <Input
             placeholder="Tên đăng nhập ?"
@@ -74,6 +80,7 @@ export default function Login() {
               setUsername(e.target.value);
             }}
             value={username}
+            onKeyPress={handleKeyPress}
           />
           <Input.Password
             placeholder="Mật khẩu"
@@ -81,6 +88,7 @@ export default function Login() {
               setPassword(e.target.value);
             }}
             value={password}
+            onKeyPress={handleKeyPress}
           />
           {errorMessage !== false && (
             <Typography.Text type="danger">{errorMessage}</Typography.Text>
