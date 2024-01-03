@@ -72,7 +72,7 @@ export const LayoutWrapper = styled(Layout)`
     font-size: 11px;
   }
 
-  .ant-menu-item ant-menu-item-selected ant-menu-item-only-child {
-    padding-left: 20px !important;
+  .ant-menu-item ant-menu-item-only-child {
+    padding-left: 15px !important;
   }
 `;

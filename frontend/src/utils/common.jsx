@@ -306,35 +306,26 @@ export const convertXML = (
   return contentWithWrapper;
 };
 
-export const convertDateFormatLog = (inputDate) => {
-  const months = {
-    Jan: "01",
-    Feb: "02",
-    Mar: "03",
-    Apr: "04",
-    May: "05",
-    Jun: "06",
-    Jul: "07",
-    Aug: "08",
-    Sep: "09",
-    Oct: "10",
-    Nov: "11",
-    Dec: "12",
-  };
+export const parseDate = (inputDate, timeZoneOffset = 0) => {
+  try {
+    const date = new Date(inputDate);
 
-  const dateParts = inputDate.match(
-    /(\d{2})\/([A-Za-z]{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2})/
-  );
-  if (!dateParts) {
-    return "Invalid Date";
+    // Adjust the date to the desired time zone offset
+    date.setHours(date.getHours() + timeZoneOffset);
+
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZoneName: "short",
+    };
+
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  } catch (error) {
+    return "";
   }
-
-  const day = dateParts[1];
-  const month = months[dateParts[2]];
-  const year = dateParts[3];
-  const hours = dateParts[4];
-  const minutes = dateParts[5];
-  const seconds = dateParts[6];
-
-  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 };

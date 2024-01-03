@@ -21,7 +21,7 @@ const reducer = createSlice({
     getBackupsSuccess: (state, action) => {
       state.errorMassage = false;
       //notice
-      state.selectedBackup = action.payload[0];
+      state.selectedBackup = action.payload;
       state.isLoading = false;
     },
     getBackupsError: (state, action) => {

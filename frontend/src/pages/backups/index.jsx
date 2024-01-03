@@ -5,6 +5,7 @@ import backupSlice from "../../toolkits/backups/slice";
 import { Table, Select, Input, Row, Flex } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
+import { parseDate } from "../../utils/common";
 
 const pageHeader = {
   title: "Danh sách ip",
@@ -37,28 +38,34 @@ const Backups = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-    },
-    {
-      title: "status",
-      dataIndex: "status",
-      key: "status",
+      // width: 500,
     },
     {
       title: "Value",
       dataIndex: "value",
       key: "value",
       align: "center",
-      width: 500,
-      render: (text, record) => {
-        return record?.value;
-      },
+      width: 800,
     },
   ];
 
   const backups = [
     {
       name: "Thiết lập chế độ tự động sao lưu",
-      status: (
+
+      value: (
+        <Input
+          style={{
+            width: "100%",
+          }}
+          value={selectedBackup?.time}
+          onChange={(e) => onTextInputChange("time", e)}
+        />
+      ),
+    },
+    {
+      name: "Trạng thái sao lưu",
+      value: (
         <Select
           style={{
             width: "100%",
@@ -77,16 +84,22 @@ const Backups = () => {
           ]}
         />
       ),
-
-      value: (
-        <Input
-          style={{
-            width: "100%",
-          }}
-          value={selectedBackup?.time}
-          onChange={(e) => onTextInputChange("time", e)}
-        />
-      ),
+    },
+    {
+      name: "Đường dẫn lưu trữ",
+      value: selectedBackup?.cfg_path,
+    },
+    {
+      name: "Thời gian cập nhật",
+      value: parseDate(selectedBackup?.mtime) || "",
+    },
+    {
+      name: "Thời gian sửa đổi",
+      value: parseDate(selectedBackup?.ctime) || "",
+    },
+    {
+      name: "Thời gian tạo",
+      value: parseDate(selectedBackup?.birthtime) || "",
     },
   ];
 

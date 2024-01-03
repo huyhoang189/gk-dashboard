@@ -1,5 +1,3 @@
-import { convertDateFormatLog } from "../../utils/common";
-
 export const challengeColumns = [
   {
     title: "STT",
@@ -38,7 +36,7 @@ export const challengeColumns = [
     key: "timestamp",
     align: "center",
     render: (text, record) => {
-      return record?.timestamp && convertDateFormatLog(record?.timestamp);
+      return record?.timestamp;
     },
   },
 ];

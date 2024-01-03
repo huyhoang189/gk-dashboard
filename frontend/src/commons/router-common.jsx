@@ -30,6 +30,10 @@ const PUBLIC_ROUTER = [
         key: "success",
         label: "success",
       },
+      {
+        key: "ddoss",
+        label: "Cảnh báo DDos",
+      },
     ],
   },
   {
@@ -41,10 +45,10 @@ const PUBLIC_ROUTER = [
         key: "blacklists",
         label: "Blacklist",
       },
-      {
-        key: "whitelists",
-        label: "Whitelist",
-      },
+      // {
+      //   key: "whitelists",
+      //   label: "Whitelist",
+      // },
       {
         key: "nginx",
         label: "Cấu hình Challenge",

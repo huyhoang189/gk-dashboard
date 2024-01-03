@@ -3,7 +3,7 @@ import { Breadcrumb, CreateButton, DeleteButton } from "../../components";
 import { useEffect, useState } from "react";
 import { dnsColumns } from "./columns";
 import dnsSlice from "../../toolkits/dnss/slice";
-import { Flex, Input, Space, Table } from "antd";
+import { Flex, Input, Space, Table, Typography } from "antd";
 import DnsModal from "./modal";
 const pageHeader = {
   title: "Danh sách ip",
@@ -81,6 +81,9 @@ const Dnss = () => {
   useEffect(() => {
     dispatch(dnsSlice.actions.getDnss());
   }, [dispatch]);
+
+  //check active
+  const ipActive = dataSource.find((e) => e.active === 1)?.ip;
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
@@ -99,6 +102,10 @@ const Dnss = () => {
           <CreateButton onClick={() => handleModal(null)} />
         </Space>
       </Flex>
+
+      <Typography.Text
+        style={{ fontWeight: "bold" }}
+      >{`IP đang hoạt động: ${ipActive}`}</Typography.Text>
       <Table
         columns={columns}
         dataSource={dataSource}

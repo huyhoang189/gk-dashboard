@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "../../components";
+import { Modal, SelectInput } from "../../components";
 import { Button, Divider, Typography, Select } from "antd";
 import { useEffect } from "react";
 import dnsSlice from "../../toolkits/dnss/slice";
@@ -58,15 +58,41 @@ export default function ModalItem() {
         property={"ip"}
         value={selectedDns?.ip}
       />
-      {/* <TextInput
-        title="Địa chỉ IP cần đưa vào danh sách"
-        placeholder="Nhập vào địa chỉ IP"
-        onChange={onRecordInputChange}
+      <SelectInput
+        title="Trạng thái sử dụng"
+        onChange={onSelectedInputChange}
+        property={"active"}
+        value={selectedDns?.active}
+        options={[
+          {
+            value: 1,
+            label: "Đang sử dụng",
+          },
+          {
+            value: 0,
+            label: "Không sử dụng",
+          },
+        ]}
+      />
+
+      <SelectInput
+        title="Trạng thái sẵn sàng"
+        onChange={onSelectedInputChange}
         property={"status"}
         value={selectedDns?.status}
-      /> */}
+        options={[
+          {
+            value: 1,
+            label: "Đang sử dụng",
+          },
+          {
+            value: 0,
+            label: "Không sử dụng",
+          },
+        ]}
+      />
 
-      <Select
+      {/* <Select
         style={{
           width: "100%",
         }}
@@ -82,7 +108,7 @@ export default function ModalItem() {
             label: "Tắt",
           },
         ]}
-      />
+      /> */}
     </Modal>
   );
 }

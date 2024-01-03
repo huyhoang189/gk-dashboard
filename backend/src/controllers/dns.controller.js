@@ -20,32 +20,32 @@ const getAll = async (req, res, next) => {
 };
 
 const create = async (req, res, next) => {
-  const { ip, status } = req.body;
+  const { ip, status, active } = req.body;
   if (!ip) throw new NotFoundError("IP address is required");
   if (!isValidIP(ip)) throw new ForbiddenError("It isn't IP format");
 
-  const isExcuted = createEntry(ip, status);
+  const isExcuted = createEntry(ip, active, status);
   if (!isExcuted) throw new ForbiddenError("Insert is misssing!");
   return new Succeed({
     message: "Create dns successfully",
     metadata: {
-      data: { ip, status },
+      data: { ip, active, status },
     },
   }).send(res);
 };
 
 const update = async (req, res, next) => {
-  const { ip, status } = req.body;
+  const { ip, active, status } = req.body;
   if (!ip) throw new NotFoundError("IP address is required");
   if (!isValidIP(ip)) throw new ForbiddenError("It isn't IP format");
 
-  const isExcuted = updateEntry(ip, status);
+  const isExcuted = updateEntry(ip, active, status);
   if (!isExcuted) throw new ForbiddenError("Update is misssing!");
 
   return new Succeed({
     message: "Create dns successfully",
     metadata: {
-      data: { ip, status },
+      data: { ip, active, status },
     },
   }).send(res);
 };
@@ -69,11 +69,15 @@ const deleteItem = async (req, res, next) => {
 const getAllEntries = () => {
   try {
     const data = fs.readFileSync(filename, "utf8");
-    const entries = data.split("\n").map((line) => {
-      const [ip, status] = line.split(" ");
-      return { ip, status: parseInt(status) };
-    });
-    return entries;
+    if (data) {
+      const entries = data.split("\n").map((line) => {
+        const [ip, active, status] = line.split(" ");
+        return { ip, active: parseInt(active), status: parseInt(status) };
+      });
+      return entries;
+    } else {
+      return [];
+    }
   } catch (error) {
     console.error("Error reading file:", error);
     return [];
@@ -81,12 +85,12 @@ const getAllEntries = () => {
 };
 
 // Function to create a new entry
-const createEntry = (ip, status) => {
+const createEntry = (ip, active = 0, status = 0) => {
   try {
     const entries = getAllEntries();
-    entries.push({ ip, status });
+    entries.push({ ip, status, active });
     const formattedData = entries
-      .map(({ ip, status }) => `${ip} ${status}`)
+      .map(({ ip, active, status }) => `${ip} ${active} ${status}`)
       .join("\n");
     fs.writeFileSync(filename, formattedData, "utf8");
     return true;
@@ -97,17 +101,17 @@ const createEntry = (ip, status) => {
 };
 
 // Function to update an entry by IP address
-const updateEntry = (ip, newStatus) => {
+const updateEntry = (ip, newActive = 0, newStatus = 0) => {
   try {
     const entries = getAllEntries();
     const updatedEntries = entries.map((entry) => {
       if (entry.ip === ip) {
-        return { ...entry, status: newStatus };
+        return { ...entry, active: newActive, status: newStatus };
       }
       return entry;
     });
     const formattedData = updatedEntries
-      .map(({ ip, status }) => `${ip} ${status}`)
+      .map(({ ip, active, status }) => `${ip} ${active} ${status}`)
       .join("\n");
     fs.writeFileSync(filename, formattedData, "utf8");
     return true;

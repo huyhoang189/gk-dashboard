@@ -19,6 +19,7 @@ import Roles from "../pages/roles";
 import Users from "../pages/users";
 import Departments from "../pages/departments";
 import Listens from "../pages/listens";
+import DDoss from "../pages/ddoss";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "elks",
         element: <ElasticSearch />,
+      },
+      {
+        path: "ddoss",
+        element: <DDoss />,
       },
       {
         path: "roles",

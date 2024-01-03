@@ -1,5 +1,3 @@
-import { convertDateFormatLog } from "../../utils/common";
-
 export const successColumns = [
   {
     title: "STT",
@@ -44,7 +42,7 @@ export const successColumns = [
     key: "timestamp",
     align: "center",
     render: (text, record) => {
-      return record?.timestamp && convertDateFormatLog(record?.timestamp);
+      return record?.timestamp;
     },
   },
 ];

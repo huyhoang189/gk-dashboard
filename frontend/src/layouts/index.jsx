@@ -29,7 +29,7 @@ const MainLayout = () => {
   const { user } = useSelector((state) => state.auths);
 
   useEffect(() => {
-    window.document.title = "Anti-DDOS";
+    window.document.title = "Anti-DDos";
   }, [window.location.pathname]);
 
   useEffect(() => {

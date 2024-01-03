@@ -6,15 +6,22 @@ const {
 const fs = require("fs");
 
 const url = process.env.BACKUP_CONFIG_FILE;
+const backup_file_url = process.env.BACKUP_FILE;
 
 const getAll = async (req, res, next) => {
   const configs = readDataFromFile();
   if (!configs) throw new ForbiddenError("Not found configs");
 
+  const backupInfo = readInfomationFile(backup_file_url);
+  // console.log(backupInfo);
+
   return new Succeed({
     message: "Get backup successfully",
     metadata: {
-      data: configs,
+      data: {
+        ...configs[0],
+        ...backupInfo,
+      },
     },
   }).send(res);
 };
@@ -75,4 +82,21 @@ const saveDataToFile = (data) => {
   const lines = data.map((obj) => `${obj.status} ${obj.time}`);
   const fileContents = lines.join("\n");
   fs.writeFileSync(url, fileContents);
+};
+
+const readInfomationFile = (path) => {
+  try {
+    const stats = fs.statSync(path);
+
+    return {
+      cfg_path: path,
+      size: stats?.size,
+      atime: stats?.atime,
+      mtime: stats?.mtime,
+      ctime: stats?.ctime,
+      birthtime: stats?.birthtime,
+    };
+  } catch (error) {
+    console.error(`Error reading file information: ${error.message}`);
+  }
 };

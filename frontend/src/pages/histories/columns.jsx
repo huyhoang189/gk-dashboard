@@ -1,5 +1,3 @@
-import { convertDateFormatLog } from "../../utils/common";
-
 export const historyColumns = [
   {
     title: "STT",
