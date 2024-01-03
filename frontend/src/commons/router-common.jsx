@@ -103,7 +103,7 @@ const PUBLIC_ROUTER = [
       },
       {
         key: "listens",
-        label: "Quản lý truy cập",
+        label: "Theo dõi hành vi",
       },
     ],
   },

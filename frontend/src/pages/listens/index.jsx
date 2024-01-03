@@ -12,10 +12,10 @@ const pageHeader = {
       title: "Trang chủ",
     },
     {
-      title: "Giám sát truy vấn",
+      title: "Quản trị hệ thống",
     },
     {
-      title: "Danh sách Listen Logs",
+      title: "Theo dõi hành vi",
     },
   ],
 };
