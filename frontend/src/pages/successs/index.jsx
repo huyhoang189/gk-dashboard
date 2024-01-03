@@ -86,6 +86,7 @@ const Successs = () => {
       <Table
         columns={columns}
         dataSource={dataSource}
+        loading={isLoading}
         bordered
         pagination={{
           current: currentPage,

@@ -102,6 +102,7 @@ const Listens = () => {
         columns={columns}
         dataSource={dataSource}
         bordered
+        loading={isLoading}
         pagination={{
           current: currentPage,
           pageSize: pageSize,

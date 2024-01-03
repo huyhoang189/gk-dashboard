@@ -110,6 +110,7 @@ const Dnss = () => {
         columns={columns}
         dataSource={dataSource}
         bordered
+        loading={isLoading}
         pagination={{
           ...pagination,
           total: dataSource.length,

@@ -114,6 +114,7 @@ const Users = () => {
           total: dataSource.length,
           onChange: handlePaginationChange,
         }}
+        loading={isLoading}
       />
       <UserModal />
     </div>

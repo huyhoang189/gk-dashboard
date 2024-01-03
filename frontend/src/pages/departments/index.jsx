@@ -109,12 +109,12 @@ const Departments = () => {
         columns={columns}
         dataSource={dataSource}
         bordered
+        loading={isLoading}
         pagination={{
           ...pagination,
           total: dataSource.length,
           onChange: handlePaginationChange,
         }}
-        loading={isLoading}
       />
       <DepartmentModal />
     </div>
