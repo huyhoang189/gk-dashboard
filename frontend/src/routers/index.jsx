@@ -20,6 +20,7 @@ import Users from "../pages/users";
 import Departments from "../pages/departments";
 import Listens from "../pages/listens";
 import DDoss from "../pages/ddoss";
+import Sessions from "../pages/sessions";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
       {
         path: "databases",
         element: <Databases />,
+      },
+      {
+        path: "sessions",
+        element: <Sessions />,
       },
       {
         path: "histories",

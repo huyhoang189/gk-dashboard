@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Breadcrumb, CreateButton } from "../../components";
 import { useEffect } from "react";
 import backupSlice from "../../toolkits/backups/slice";
-import { Table, Select, Input, Row, Flex } from "antd";
+import { Table, Select, Input, Row, Flex, InputNumber } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { parseDate } from "../../utils/common";
@@ -51,19 +51,6 @@ const Backups = () => {
 
   const backups = [
     {
-      name: "Thiết lập chế độ tự động sao lưu",
-
-      value: (
-        <Input
-          style={{
-            width: "100%",
-          }}
-          value={selectedBackup?.time}
-          onChange={(e) => onTextInputChange("time", e)}
-        />
-      ),
-    },
-    {
       name: "Trạng thái sao lưu",
       value: (
         <Select
@@ -82,6 +69,21 @@ const Backups = () => {
               label: "Tắt",
             },
           ]}
+        />
+      ),
+    },
+    {
+      name: "Thời gian sao lưu (Giờ)",
+
+      value: (
+        <InputNumber
+          min={0}
+          max={24}
+          style={{
+            width: "100%",
+          }}
+          value={selectedBackup?.time}
+          onChange={(e) => onInputNumberChange("time", e)}
         />
       ),
     },
@@ -107,6 +109,14 @@ const Backups = () => {
 
   //function
   const onSelectedInputChange = (key, value) => {
+    if (key) {
+      let backupClone = Object.assign({}, selectedBackup);
+      backupClone[key] = value;
+      dispatch(backupSlice.actions.updateSelectedBackupInput(backupClone));
+    }
+  };
+
+  const onInputNumberChange = (key, value) => {
     if (key) {
       let backupClone = Object.assign({}, selectedBackup);
       backupClone[key] = value;

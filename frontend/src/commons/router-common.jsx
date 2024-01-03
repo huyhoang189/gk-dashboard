@@ -77,6 +77,10 @@ const PUBLIC_ROUTER = [
         label: "Bảo mật hệ thống",
       },
       {
+        key: "sessions",
+        label: "Bảo mật CSDL",
+      },
+      {
         key: "histories",
         label: "Nhật ký hệ thống",
       },

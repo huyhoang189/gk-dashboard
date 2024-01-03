@@ -16,7 +16,8 @@ const roleRouter = require("./role.router");
 const userRouter = require("./user.router");
 const departmentRouter = require("./department.router");
 const listenRouter = require("./listen.router");
-
+const sessionRouter = require("./session.router");
+const emailHeaderRouter = require("./email-header.router");
 const router = express.Router();
 
 /**
@@ -47,4 +48,6 @@ router.use("/roles", roleRouter);
 router.use("/users", userRouter);
 router.use("/departments", departmentRouter);
 router.use("/listens", listenRouter);
+router.use("/sessions", sessionRouter);
+router.use("/email-headers", emailHeaderRouter);
 module.exports = router;

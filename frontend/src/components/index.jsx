@@ -7,6 +7,7 @@ import {
 } from "./Button";
 import Modal from "./Form/modal";
 import SelectInput from "./Form/select-input";
+import TextAreaInput from "./Form/textarea-input";
 export {
   CustomBreadcrumb as Breadcrumb,
   CreateButton as CreateButton,
@@ -15,4 +16,5 @@ export {
   DetailButton as DetailButton,
   Modal as Modal,
   SelectInput as SelectInput,
+  TextAreaInput as TextAreaInput,
 };

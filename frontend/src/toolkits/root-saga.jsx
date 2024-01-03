@@ -15,6 +15,9 @@ import userSaga from "./users/saga";
 import authSaga from "./auth/saga";
 import departmentSaga from "./departments/saga";
 import listenSaga from "./listens/saga";
+import sessionSaga from "./sessions/saga";
+import emailHeaderSaga from "./email-headers/saga";
+
 export default function* rootSaga() {
   yield all([
     blacklistSaga(),
@@ -33,5 +36,7 @@ export default function* rootSaga() {
     authSaga(),
     departmentSaga(),
     listenSaga(),
+    sessionSaga(),
+    emailHeaderSaga(),
   ]);
 }
