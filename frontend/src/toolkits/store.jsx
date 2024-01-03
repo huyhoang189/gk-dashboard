@@ -18,6 +18,7 @@ import roleSlice from "./roles/slice";
 import userSlice from "./users/slice";
 import authSlice from "./auth/slice";
 import departmentSlice from "./departments/slice";
+import listenSlice from "./listens/slice";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [
@@ -43,6 +44,7 @@ export const store = configureStore({
     users: userSlice.reducer,
     auths: authSlice.reducer,
     departments: departmentSlice.reducer,
+    listens: listenSlice.reducer,
   },
   middleware,
 });

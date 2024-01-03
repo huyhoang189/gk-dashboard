@@ -92,6 +92,10 @@ const PUBLIC_ROUTER = [
         key: "departments",
         label: "Đơn vị",
       },
+      {
+        key: "listens",
+        label: "Quản lý truy cập",
+      },
     ],
   },
 ];

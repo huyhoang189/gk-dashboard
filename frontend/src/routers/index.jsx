@@ -18,6 +18,7 @@ import ElasticSearch from "../pages/elks";
 import Roles from "../pages/roles";
 import Users from "../pages/users";
 import Departments from "../pages/departments";
+import Listens from "../pages/listens";
 
 export const router = createBrowserRouter([
   {
@@ -98,6 +99,10 @@ export const router = createBrowserRouter([
       {
         path: "departments",
         element: <Departments />,
+      },
+      {
+        path: "listens",
+        element: <Listens />,
       },
     ],
   },

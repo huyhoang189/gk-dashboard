@@ -22,6 +22,7 @@ model users {
   description   String?      @db.Text
   role_id       String?      @db.Char(36)
   department_id String?      @db.Char(36)
+  listens       listens[]
   roles         roles?       @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_ibfk_1")
   departments   departments? @relation(fields: [department_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "users_ibfk_2")
 
@@ -40,4 +41,14 @@ model departments {
   users             users[]
 
   @@index([parent_id], map: "parent_id")
+}
+
+model listens {
+  id      String   @id @default(dbgenerated("(uuid())")) @db.Char(36)
+  user_id String?  @db.Char(36)
+  url     String?  @db.Text
+  time    DateTime @default(now()) @db.Timestamp(0)
+  users   users?   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "listens_ibfk_1")
+
+  @@index([user_id], map: "user_id")
 }

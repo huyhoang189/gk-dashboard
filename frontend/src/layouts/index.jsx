@@ -10,16 +10,19 @@ import {
   theme,
 } from "antd";
 import Sidebar from "./sidebar";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LayoutWrapper } from "../assets/styles/layout-style";
 import { UserOutlined } from "@ant-design/icons";
 import authSlice from "../toolkits/auth/slice";
 import { useDispatch, useSelector } from "react-redux";
+import listenSlice from "../toolkits/listens/slice";
+import { ACTION_NAME } from "../commons/constants";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -32,6 +35,18 @@ const MainLayout = () => {
   useEffect(() => {
     dispatch(authSlice.actions.checkAuthentication());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(
+      listenSlice.actions.handleListen({
+        item: {
+          user_id: user?.id,
+          url: window.location.href,
+        },
+        actionName: ACTION_NAME.CREATE,
+      })
+    );
+  }, [location.pathname]);
 
   return (
     <LayoutWrapper
