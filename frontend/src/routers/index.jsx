@@ -21,6 +21,7 @@ import Departments from "../pages/departments";
 import Listens from "../pages/listens";
 import DDoss from "../pages/ddoss";
 import Sessions from "../pages/sessions";
+import Reports from "../pages/reports";
 
 export const router = createBrowserRouter([
   {
@@ -113,6 +114,10 @@ export const router = createBrowserRouter([
       {
         path: "listens",
         element: <Listens />,
+      },
+      {
+        path: "reports",
+        element: <Reports />,
       },
     ],
   },

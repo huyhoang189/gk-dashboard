@@ -10,15 +10,15 @@ const pageHeader = {
       title: "Trang chủ",
     },
     {
-      title: "Giám sát truy vấn",
+      title: "Bảo mật sao lưu",
     },
     {
-      title: "Cảnh báo DDos",
+      title: "Tổng hợp, báo cáo",
     },
   ],
 };
 
-const DDoss = () => {
+const Reports = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
@@ -30,4 +30,4 @@ const DDoss = () => {
   );
 };
 
-export default DDoss;
+export default Reports;

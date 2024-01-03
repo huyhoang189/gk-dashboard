@@ -34,7 +34,7 @@ export const dnsColumns = [
     align: "center",
     render: (text) => {
       return text == 1 ? (
-        <Tag color="green">Sãn sàn</Tag>
+        <Tag color="green">Sãn sàng</Tag>
       ) : (
         <Tag color="red">Không sẵn sàng</Tag>
       );

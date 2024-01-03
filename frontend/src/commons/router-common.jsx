@@ -105,6 +105,10 @@ const PUBLIC_ROUTER = [
         key: "listens",
         label: "Theo dõi hành vi",
       },
+      {
+        key: "reports",
+        label: "Tổng hợp, báo cáo",
+      },
     ],
   },
 ];

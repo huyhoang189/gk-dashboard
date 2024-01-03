@@ -83,11 +83,11 @@ export default function ModalItem() {
         options={[
           {
             value: 1,
-            label: "Đang sử dụng",
+            label: "Sẵn sàng",
           },
           {
             value: 0,
-            label: "Không sử dụng",
+            label: "Không sẵn sàng",
           },
         ]}
       />

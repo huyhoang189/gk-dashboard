@@ -23,7 +23,7 @@ const ElasticSearch = () => {
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
       <iframe
-        src="http://sqlq2.local:5601/"
+        src="http://sqlq2.local:5601/app/dashboards#/view/9e568890-a65b-11ee-9ede-ddd46c7abab1?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))"
         style={{ width: "100%", height: "1100px" }}
       />
     </div>
