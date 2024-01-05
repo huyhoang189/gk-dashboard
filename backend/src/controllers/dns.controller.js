@@ -72,9 +72,11 @@ const getAllEntries = () => {
     if (data) {
       const entries = data.split("\n").map((line) => {
         const [ip, active, status] = line.split(" ");
+
         return { ip, active: parseInt(active), status: parseInt(status) };
       });
-      return entries;
+
+      return entries.filter((e) => e.ip !== "");
     } else {
       return [];
     }

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { readFileSync } = require("./file");
 
 const readFile = async (
   filePath,
@@ -7,8 +8,10 @@ const readFile = async (
   type = "SUCCESS"
 ) => {
   try {
-    const datas = await fs.readFileSync(filePath, "utf8");
-    const entries = datas.split("\n");
+    // const datas = await fs.readFileSync(filePath, "utf8");
+    const entries = await readFileSync(filePath);
+    // console.log(entries);
+    // const entries = datas.split("\n");
 
     const list =
       type === "SUCCESS"
