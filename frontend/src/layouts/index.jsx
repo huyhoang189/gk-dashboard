@@ -37,15 +37,17 @@ const MainLayout = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(
-      listenSlice.actions.handleListen({
-        item: {
-          user_id: user?.id,
-          url: window.location.href,
-        },
-        actionName: ACTION_NAME.CREATE,
-      })
-    );
+    if (user?.id) {
+      dispatch(
+        listenSlice.actions.handleListen({
+          item: {
+            user_id: user?.id,
+            url: window.location.href,
+          },
+          actionName: ACTION_NAME.CREATE,
+        })
+      );
+    }
   }, [location.pathname]);
 
   return (
