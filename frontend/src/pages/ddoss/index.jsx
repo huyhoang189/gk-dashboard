@@ -24,7 +24,7 @@ const DDoss = () => {
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
       <iframe
-        src={`${url}/app/discover#/view/20631570-aa89-11ee-b5a0-b3a335940e46?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(columns:!(rule.name,source.ip,source.port,destination.ip,destination.port),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:event.kind,negate:!f,params:(query:alert),type:phrase),query:(match_phrase:(event.kind:alert))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:event.module,negate:!f,params:(query:suricata),type:phrase),query:(match_phrase:(event.module:(query:suricata)))),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'filebeat-*',key:message,negate:!f,params:(query:'Attempted%20Denial%20of%20Service'),type:phrase),query:(match_phrase:(message:'Attempted%20Denial%20of%20Service')))),grid:(),hideChart:!f,index:'filebeat-*',interval:auto,query:(language:kuery,query:''),sort:!(!('@timestamp',desc)))`}
+        src={`${url}/app/dashboards#/view/2992d090-ab8d-11ee-8042-0df3a663a99b?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))`}
         style={{ width: "100%", height: "1100px" }}
       />
     </div>
