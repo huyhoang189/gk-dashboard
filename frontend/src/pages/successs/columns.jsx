@@ -17,12 +17,26 @@ export const successColumns = [
     dataIndex: "url",
     key: "url",
     align: "center",
+    render: (text) => {
+      const maxLength = 30; // Set your desired character limit here
+      if (text.length > maxLength) {
+        return <span>{`${text.slice(0, maxLength)}...`}</span>;
+      }
+      return <span>{text}</span>;
+    },
   },
   {
     title: "Request",
     dataIndex: "request",
     key: "request",
     align: "center",
+    render: (text) => {
+      const maxLength = 50; // Set your desired character limit here
+      if (text.length > maxLength) {
+        return <span>{`${text.slice(0, maxLength)}...`}</span>;
+      }
+      return <span>{text}</span>;
+    },
   },
   {
     title: "HTTP Status",
