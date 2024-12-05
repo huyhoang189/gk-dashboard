@@ -26,7 +26,7 @@ const ElasticSearch = () => {
       <Breadcrumb items={pageHeader.breadcrumb} />
       <iframe
         src={`${url}/app/dashboards#/view/9e568890-a65b-11ee-9ede-ddd46c7abab1?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))`}
-        style={{ width: "100%", height: "1100px" }}
+        style={{ width: "100%", height: "800px", marginTop: 10 }}
       />
     </div>
   );

@@ -6,6 +6,7 @@ import { Table, Select, Input, Row, Flex, InputNumber } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { parseDate } from "../../utils/common";
+import { PageBodyWrapper } from "../../assets/styles/page-body-style";
 
 const pageHeader = {
   title: "Danh sách ip",
@@ -148,22 +149,24 @@ const Backups = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
-      <Table
-        pagination={false}
-        dataSource={dataSource}
-        columns={columns}
-        bordered
-        showHeader={false}
-        loading={isLoading}
-      />
-
-      <Flex justify="center" style={{ marginTop: 10 }}>
-        <CreateButton
-          btnTxt="Lưu và đồng bộ dữ liệu"
-          icon={<SyncOutlined />}
-          onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedBackup)}
+      <PageBodyWrapper>
+        <Table
+          pagination={false}
+          dataSource={dataSource}
+          columns={columns}
+          bordered
+          showHeader={false}
+          loading={isLoading}
         />
-      </Flex>
+
+        <Flex justify="center" style={{ marginTop: 10 }}>
+          <CreateButton
+            btnTxt="Lưu và đồng bộ dữ liệu"
+            icon={<SyncOutlined />}
+            onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedBackup)}
+          />
+        </Flex>
+      </PageBodyWrapper>
     </div>
   );
 };

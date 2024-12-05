@@ -10,6 +10,7 @@ import { roleColumns } from "./columns";
 import roleSlice from "../../toolkits/roles/slice";
 import { Flex, Input, Space, Table } from "antd";
 import RoleModal from "./modal";
+import { PageBodyWrapper } from "../../assets/styles/page-body-style";
 const pageHeader = {
   title: "Danh sách ip",
   breadcrumb: [
@@ -90,33 +91,35 @@ const Roles = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
-      <Flex
-        style={{ width: "100%", marginBottom: 10 }}
-        justify={"space-between"}
-        align="center"
-      >
-        <Input
-          style={{ width: 300 }}
-          placeholder="Tìm kiếm"
-          onChange={onFilterInputChange}
-        />
+      <PageBodyWrapper>
+        <Flex
+          style={{ width: "100%", marginBottom: 10 }}
+          justify={"space-between"}
+          align="center"
+        >
+          <Input
+            style={{ width: 300 }}
+            placeholder="Tìm kiếm"
+            onChange={onFilterInputChange}
+          />
 
-        <Space>
-          <CreateButton onClick={() => handleModal(null)} />
-        </Space>
-      </Flex>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        loading={isLoading}
-        pagination={{
-          ...pagination,
-          total: dataSource.length,
-          onChange: handlePaginationChange,
-        }}
-      />
-      <RoleModal />
+          <Space>
+            <CreateButton onClick={() => handleModal(null)} />
+          </Space>
+        </Flex>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          bordered
+          loading={isLoading}
+          pagination={{
+            ...pagination,
+            total: dataSource.length,
+            onChange: handlePaginationChange,
+          }}
+        />
+        <RoleModal />
+      </PageBodyWrapper>
     </div>
   );
 };

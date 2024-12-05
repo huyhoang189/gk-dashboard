@@ -5,6 +5,7 @@ import thresholdSlice from "../../toolkits/thresholds/slice";
 import { Table, Select, Input, Row, Flex } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
+import { PageBodyWrapper } from "../../assets/styles/page-body-style";
 
 const FIELDS = {
   TCP_FLOOD: "tcp_flood",
@@ -242,22 +243,24 @@ const Thresholds = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
-      <Table
-        pagination={false}
-        dataSource={dataSource}
-        columns={columns}
-        bordered
-        showHeader={false}
-        loading={isLoading}
-      />
-
-      <Flex justify="center" style={{ marginTop: 10 }}>
-        <CreateButton
-          btnTxt="Lưu và đồng bộ dữ liệu"
-          icon={<SyncOutlined />}
-          onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedThreshold)}
+      <PageBodyWrapper>
+        <Table
+          pagination={false}
+          dataSource={dataSource}
+          columns={columns}
+          bordered
+          showHeader={false}
+          loading={isLoading}
         />
-      </Flex>
+
+        <Flex justify="center" style={{ marginTop: 10 }}>
+          <CreateButton
+            btnTxt="Lưu và đồng bộ dữ liệu"
+            icon={<SyncOutlined />}
+            onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedThreshold)}
+          />
+        </Flex>
+      </PageBodyWrapper>
     </div>
   );
 };

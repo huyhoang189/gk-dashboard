@@ -12,12 +12,12 @@ code {
     monospace;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
-}
+} */
 
-::-webkit-scrollbar-track {
+/* ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px rgba(0, 21, 41, 0.8);
   border-radius: 10px;
 }
@@ -29,4 +29,13 @@ code {
 
 .no-hover:hover {
   background-color: inherit;
+}
+ */
+
+.ant-table-thead > tr > th {
+  text-transform: uppercase;
+}
+
+.ant-menu-horizontal  {
+  border-bottom: 0
 }

@@ -5,6 +5,7 @@ import { dnsColumns } from "./columns";
 import dnsSlice from "../../toolkits/dnss/slice";
 import { Flex, Input, Space, Table, Typography } from "antd";
 import DnsModal from "./modal";
+import { PageBodyWrapper } from "../../assets/styles/page-body-style";
 const pageHeader = {
   title: "Danh sách ip",
   breadcrumb: [
@@ -87,37 +88,39 @@ const Dnss = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
-      <Flex
-        style={{ width: "100%", marginBottom: 10 }}
-        justify={"space-between"}
-        align="center"
-      >
-        <Input
-          style={{ width: 300 }}
-          placeholder="Tìm kiếm"
-          onChange={onFilterInputChange}
+      <PageBodyWrapper>
+        <Flex
+          style={{ width: "100%", marginBottom: 10 }}
+          justify={"space-between"}
+          align="center"
+        >
+          <Input
+            style={{ width: 300 }}
+            placeholder="Tìm kiếm"
+            onChange={onFilterInputChange}
+          />
+
+          <Space>
+            <CreateButton onClick={() => handleModal(null)} />
+          </Space>
+        </Flex>
+
+        <Typography.Text
+          style={{ fontWeight: "bold" }}
+        >{`IP đang hoạt động: ${ipActive}`}</Typography.Text>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          bordered
+          loading={isLoading}
+          pagination={{
+            ...pagination,
+            total: dataSource.length,
+            onChange: handlePaginationChange,
+          }}
         />
-
-        <Space>
-          <CreateButton onClick={() => handleModal(null)} />
-        </Space>
-      </Flex>
-
-      <Typography.Text
-        style={{ fontWeight: "bold" }}
-      >{`IP đang hoạt động: ${ipActive}`}</Typography.Text>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        loading={isLoading}
-        pagination={{
-          ...pagination,
-          total: dataSource.length,
-          onChange: handlePaginationChange,
-        }}
-      />
-      <DnsModal />
+        <DnsModal />
+      </PageBodyWrapper>
     </div>
   );
 };

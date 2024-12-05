@@ -14,6 +14,7 @@ import { Col, Flex, Input, Row, Space, Table } from "antd";
 import EmailModal from "./modal";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
+import { PageBodyWrapper } from "../../assets/styles/page-body-style";
 const pageHeader = {
   title: "Danh sách ip",
   breadcrumb: [
@@ -115,62 +116,64 @@ const Emails = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
-      <Row gutter={16}>
-        <Col span={12}>
-          <Flex
-            style={{ width: "100%", marginBottom: 10 }}
-            justify={"space-between"}
-            align="center"
-          >
-            <Input
-              style={{ width: 300 }}
-              placeholder="Tìm kiếm"
-              onChange={onFilterInputChange}
-            />
-
-            <Space>
-              <CreateButton onClick={() => handleModal(null)} />
-            </Space>
-          </Flex>
-          <Table
-            columns={columns}
-            dataSource={dataSource}
-            bordered
-            loading={isLoading}
-            pagination={{
-              ...pagination,
-              total: dataSource.length,
-              onChange: handlePaginationChange,
-            }}
-          />
-          <EmailModal />
-        </Col>
-        <Col span={12}>
-          <Flex
-            style={{ width: "100%", marginBottom: 10 }}
-            justify="flex-end"
-            align="center"
-          >
-            <Space>
-              <CreateButton
-                onClick={() =>
-                  handleRecord(ACTION_NAME.UPDATE, selectedEmailHeader)
-                }
-                btnTxt="Cập nhật Header"
-                icon={<SyncOutlined />}
+      <PageBodyWrapper>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Flex
+              style={{ width: "100%", marginBottom: 10 }}
+              justify={"space-between"}
+              align="center"
+            >
+              <Input
+                style={{ width: 300 }}
+                placeholder="Tìm kiếm"
+                onChange={onFilterInputChange}
               />
-            </Space>
-          </Flex>
-          <TextAreaInput
-            title="Header Email"
-            placeholder="Header email"
-            onChange={onRecordInputChange}
-            property={"message"}
-            value={selectedEmailHeader?.message}
-            rows={4}
-          />
-        </Col>
-      </Row>
+
+              <Space>
+                <CreateButton onClick={() => handleModal(null)} />
+              </Space>
+            </Flex>
+            <Table
+              columns={columns}
+              dataSource={dataSource}
+              bordered
+              loading={isLoading}
+              pagination={{
+                ...pagination,
+                total: dataSource.length,
+                onChange: handlePaginationChange,
+              }}
+            />
+            <EmailModal />
+          </Col>
+          <Col span={12}>
+            <Flex
+              style={{ width: "100%", marginBottom: 10 }}
+              justify="flex-end"
+              align="center"
+            >
+              <Space>
+                <CreateButton
+                  onClick={() =>
+                    handleRecord(ACTION_NAME.UPDATE, selectedEmailHeader)
+                  }
+                  btnTxt="Cập nhật Header"
+                  icon={<SyncOutlined />}
+                />
+              </Space>
+            </Flex>
+            <TextAreaInput
+              title="Header Email"
+              placeholder="Header email"
+              onChange={onRecordInputChange}
+              property={"message"}
+              value={selectedEmailHeader?.message}
+              rows={4}
+            />
+          </Col>
+        </Row>
+      </PageBodyWrapper>
     </div>
   );
 };

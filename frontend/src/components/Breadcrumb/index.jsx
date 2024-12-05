@@ -9,13 +9,16 @@ const CustomBreadcrumb = ({ items = [] }) => (
         <Breadcrumb.Item key={i + 1}>
           {i + 1 === items.length ? (
             <span style={{ fontWeight: "bold" }}>{e?.title}</span>
+          ) : !e?.href ? (
+            <span style={{ fontWeight: "bold", color: "gray" }}>
+              {e?.title}
+            </span>
           ) : (
             <Link to={e?.href || "#"}>{e?.title}</Link>
           )}
         </Breadcrumb.Item>
       ))}
     </Breadcrumb>
-    <Divider style={{ marginTop: 10, marginBottom: 10 }} />
   </Row>
 );
 

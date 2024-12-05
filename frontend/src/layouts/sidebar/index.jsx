@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { PUBLIC_ROUTER } from "../../commons/router-common";
-import { Image, Layout, Menu } from "antd";
+import { getPublicRouter, PUBLIC_ROUTER } from "../../commons/router-common";
+import { Flex, Image, Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import bg from "../../assets/img/3043140.jpg";
+import { useTranslation } from "react-i18next";
 const { Sider } = Layout;
 const Sidebar = ({ user }) => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const onSelectItem = (e) => {
     const path = e?.keyPath.reverse().join("\\");
@@ -34,21 +36,21 @@ const Sidebar = ({ user }) => {
     // console.log("user null");
   }
 
+  //adding
+  publicRouter = getPublicRouter(t);
+
   return (
     <Sider
       collapsible
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
-      // style={{
-      //   background: `url(${bg})`, // Replace with the actual path to your image
-      //   backgroundSize: "cover", // Adjust as needed
-      //   backgroundRepeat: "no-repeat", // Adjust as needed
-      //   backgroundPosition: "bottom right", // Adjust as needed
-      // }}
+      collapsedWidth="60"
+      width={250}
     >
-      <div style={{ padding: "10px 60px" }}>
-        <Image src={logo} preview={false} />
-      </div>
+      <Flex justify="center">
+        <Image src={logo} preview={false} width={100} style={{ padding: 10 }} />
+      </Flex>
+
       <Menu
         style={{}}
         theme="dark"

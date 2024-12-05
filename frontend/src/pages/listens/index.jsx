@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { listenColumns } from "./columns";
 import listenSlice from "../../toolkits/listens/slice";
 import { Flex, Input, Space, Table } from "antd";
+import { PageBodyWrapper } from "../../assets/styles/page-body-style";
 
 const pageHeader = {
   title: "Danh sách ip",
@@ -85,37 +86,39 @@ const Listens = () => {
   return (
     <div>
       <Breadcrumb items={pageHeader.breadcrumb} />
-      <Flex
-        style={{ width: "100%", marginBottom: 10 }}
-        justify={"space-between"}
-        align="center"
-      >
-        <Input
-          style={{ width: 300 }}
-          placeholder="Tìm kiếm"
-          onChange={onFilterInputChange}
-        />
+      <PageBodyWrapper>
+        <Flex
+          style={{ width: "100%", marginBottom: 10 }}
+          justify={"space-between"}
+          align="center"
+        >
+          <Input
+            style={{ width: 300 }}
+            placeholder="Tìm kiếm"
+            onChange={onFilterInputChange}
+          />
 
-        <Space></Space>
-      </Flex>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        bordered
-        loading={isLoading}
-        pagination={{
-          current: currentPage,
-          pageSize: pageSize,
-          total: totalItem,
-          onChange: handlePaginationChange,
-        }}
-        // expandable={{
-        //   expandedRowRender: (record) => (
-        //     <p style={{ margin: 0 }}>{record.raw}</p>
-        //   ),
-        //   rowExpandable: (record) => record.name !== "Not Expandable",
-        // }}
-      />
+          <Space></Space>
+        </Flex>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          bordered
+          loading={isLoading}
+          pagination={{
+            current: currentPage,
+            pageSize: pageSize,
+            total: totalItem,
+            onChange: handlePaginationChange,
+          }}
+          // expandable={{
+          //   expandedRowRender: (record) => (
+          //     <p style={{ margin: 0 }}>{record.raw}</p>
+          //   ),
+          //   rowExpandable: (record) => record.name !== "Not Expandable",
+          // }}
+        />
+      </PageBodyWrapper>
     </div>
   );
 };

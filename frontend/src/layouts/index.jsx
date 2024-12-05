@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Breadcrumb,
+  Button,
   Flex,
+  Image,
   Layout,
   Menu,
   Popover,
+  Select,
   Space,
   theme,
+  Typography,
 } from "antd";
 import Sidebar from "./sidebar";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -17,14 +21,22 @@ import authSlice from "../toolkits/auth/slice";
 import { useDispatch, useSelector } from "react-redux";
 import listenSlice from "../toolkits/listens/slice";
 import { ACTION_NAME } from "../commons/constants";
+import { useTranslation } from "react-i18next";
+import vi_flag from "../assets/img/flag_vi.svg";
+import en_flag from "../assets/img/flag_en.svg";
+import logo from "../assets/img/logo.png";
+import Navbar from "./navbar";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+  const [lgValue, setLgValue] = useState("vi");
+
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { colorBgNavbar, borderRadiusLG },
   } = theme.useToken();
   const { user } = useSelector((state) => state.auths);
 
@@ -48,7 +60,13 @@ const MainLayout = () => {
         })
       );
     }
+    i18n.changeLanguage(lgValue);
   }, [location.pathname]);
+
+  const changeLanguage = (lng) => {
+    setLgValue(lng);
+    i18n.changeLanguage(lng); // Dynamically switch languages
+  };
 
   return (
     <LayoutWrapper
@@ -56,56 +74,69 @@ const MainLayout = () => {
         minHeight: "100vh",
       }}
     >
-      <Sidebar user={user} />
-
       <Layout>
-        <Header
+        <div
           style={{
-            height: 50,
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
             width: "100%",
-            backgroundColor: colorBgContainer,
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+            height: 120,
           }}
         >
           <Flex
-            style={{ height: 50, width: "100%" }}
-            justify={"flex-end"}
+            style={{
+              height: 70,
+              width: "100%",
+              backgroundColor: "#38454a",
+              padding: "0 20px",
+            }}
+            justify={"space-between"}
             align="center"
           >
-            <Popover
-              content={
-                <Menu
-                  mode="inline"
-                  theme="light"
-                  style={{ width: 200, margin: 0 }}
-                >
-                  <Menu.Item
-                    // key={uuid()}
-                    onClick={() => {
-                      dispatch(authSlice.actions.logout());
-                      // navigate("login", { replace: true });
-                    }}
-                  >
-                    Đăng xuất
-                  </Menu.Item>
-                </Menu>
-              }
-              trigger="click"
-              placement="bottom"
-            >
-              <Space size={8} style={{ height: 50 }}>
-                <Avatar icon={<UserOutlined />} size={30} />
-                <h3>{user?.name}</h3>
-              </Space>
-            </Popover>
+            <Flex align="center" justify={"flex-start"} gap={10}>
+              <Image src={logo} width={60} preview={false} />
+              <Typography.Title style={{ color: "#fff", fontWeight: "800" }}>
+                {t("title")}
+              </Typography.Title>
+            </Flex>
+            <Flex justify="center" align="center" gap={5}>
+              <Select
+                style={{ width: 140, backgroundColor: "transparent" }}
+                onChange={(e) => changeLanguage(e)}
+                value={lgValue}
+                options={[
+                  {
+                    value: "vi",
+                    label: (
+                      <Flex justify="flex-start" align="center" gap={5}>
+                        <Image preview={false} src={vi_flag} width={30} />
+                        <span>Vietnamese</span>
+                      </Flex>
+                    ),
+                  },
+                  {
+                    value: "en",
+                    label: (
+                      <Flex justify="flex-start" align="center" gap={5}>
+                        <Image preview={false} src={en_flag} width={30} />
+                        <span>English</span>
+                      </Flex>
+                    ),
+                  },
+                ]}
+              >
+                Select
+              </Select>
+            </Flex>
           </Flex>
-        </Header>
+
+          <Navbar />
+        </div>
+
         <Content
           style={{
-            margin: "16px 16px",
-            border: "1px solid #acb2b9",
-            padding: "10px",
-            backgroundColor: "#fff",
+            margin: "8px 8px",
           }}
         >
           <Outlet />
@@ -115,7 +146,7 @@ const MainLayout = () => {
             textAlign: "center",
           }}
         >
-          ©2023 Created by Cyber86z
+          ©2023 Created by Command 86
         </Footer>
       </Layout>
     </LayoutWrapper>

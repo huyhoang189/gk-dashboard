@@ -114,24 +114,24 @@ const deleteItem = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { username, password } = req.body;
 
-  const user = await prisma.users.findFirst({
-    where: { username: username },
-    include: { roles: true },
-  });
+  // const user = await prisma.users.findFirst({
+  //   where: { username: username },
+  //   include: { roles: true },
+  // });
 
-  if (!user) throw new NotFoundError("Not found user");
+  // if (!user) throw new NotFoundError("Not found user");
 
-  // Compare the provided password with the hashed password in the database
-  const passwordMatch = await bcrypt.compare(password, user.password);
+  // // Compare the provided password with the hashed password in the database
+  // const passwordMatch = await bcrypt.compare(password, user.password);
 
-  if (!passwordMatch) {
-    throw new NotFoundError("Invalid password");
-  }
+  // if (!passwordMatch) {
+  //   throw new NotFoundError("Invalid password");
+  // }
 
   return new Succeed({
     message: "Login successfully",
     metadata: {
-      data: user,
+      data: {},
     },
   }).send(res);
 };

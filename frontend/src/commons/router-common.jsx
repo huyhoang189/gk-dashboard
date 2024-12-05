@@ -7,11 +7,6 @@ import {
 } from "@ant-design/icons";
 
 const PUBLIC_ROUTER = [
-  // {
-  //   key: "home",
-  //   label: "Trang chủ",
-  //   icon: <HomeOutlined />,
-  // },
   {
     key: "elks",
     label: "Giám sát lưu lượng",
@@ -45,10 +40,6 @@ const PUBLIC_ROUTER = [
         key: "blacklists",
         label: "Blacklist",
       },
-      // {
-      //   key: "whitelists",
-      //   label: "Whitelist",
-      // },
       {
         key: "nginx",
         label: "Cấu hình Challenge",
@@ -113,4 +104,103 @@ const PUBLIC_ROUTER = [
   },
 ];
 
-export { PUBLIC_ROUTER };
+const getPublicRouter = (t) => {
+  return [
+    {
+      key: "elks",
+      label: t("elks"), // Sử dụng t() để dịch
+      icon: <BlockOutlined />,
+    },
+    {
+      key: "moniters",
+      label: t("moniters"),
+      icon: <AimOutlined />,
+      children: [
+        {
+          key: "challenges",
+          label: t("challenges"),
+        },
+        {
+          key: "success",
+          label: t("success"),
+        },
+        {
+          key: "ddoss",
+          label: t("ddoss"),
+        },
+      ],
+    },
+    {
+      key: "configs",
+      label: t("configs"),
+      icon: <ControlOutlined />,
+      children: [
+        {
+          key: "blacklists",
+          label: t("blacklists"),
+        },
+        {
+          key: "nginx",
+          label: t("nginx"),
+        },
+        {
+          key: "threshold",
+          label: t("threshold"),
+        },
+        {
+          key: "dnss",
+          label: t("dnss"),
+        },
+        {
+          key: "emails",
+          label: t("emails"),
+        },
+      ],
+    },
+    {
+      key: "systems",
+      label: t("systems"),
+      icon: <SettingOutlined />,
+      children: [
+        {
+          key: "sessions",
+          label: t("sessions"),
+        },
+        {
+          key: "databases",
+          label: t("databases"),
+        },
+        {
+          key: "histories",
+          label: t("histories"),
+        },
+        {
+          key: "backups",
+          label: t("backups"),
+        },
+        {
+          key: "users",
+          label: t("users"),
+        },
+        {
+          key: "roles",
+          label: t("roles"),
+        },
+        {
+          key: "departments",
+          label: t("departments"),
+        },
+        {
+          key: "listens",
+          label: t("listens"),
+        },
+        {
+          key: "reports",
+          label: t("reports"),
+        },
+      ],
+    },
+  ];
+};
+
+export { PUBLIC_ROUTER, getPublicRouter };
