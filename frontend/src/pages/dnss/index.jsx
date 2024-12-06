@@ -6,21 +6,22 @@ import dnsSlice from "../../toolkits/dnss/slice";
 import { Flex, Input, Space, Table, Typography } from "antd";
 import DnsModal from "./modal";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Cấu hình",
-    },
-    {
-      title: "Danh sách DNS",
-    },
-  ],
+import { useTranslation } from "react-i18next";
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("configs"),
+      },
+      {
+        title: t("dnss"),
+      },
+    ],
+  };
 };
-
 const Dnss = () => {
   const dispatch = useDispatch();
   const { dnss, isLoading } = useSelector((state) => state.dnss);
@@ -29,6 +30,7 @@ const Dnss = () => {
     current: 1,
     pageSize: 10,
   });
+  const { t } = useTranslation();
 
   const columns = [
     ...dnsColumns,
@@ -87,7 +89,7 @@ const Dnss = () => {
   const ipActive = dataSource.find((e) => e.active === 1)?.ip;
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Flex
           style={{ width: "100%", marginBottom: 10 }}

@@ -3,6 +3,7 @@ import {
   Avatar,
   Breadcrumb,
   Button,
+  Divider,
   Flex,
   Image,
   Layout,
@@ -143,10 +144,20 @@ const MainLayout = () => {
         </Content>
         <Footer
           style={{
-            textAlign: "center",
+            padding: "10px 5px",
           }}
         >
-          ©2023 Created by Command 86
+          <Divider style={{ marginTop: 10, marginBottom: 10 }} />
+          <Flex
+            justify="space-between"
+            align="center"
+            style={{ width: "100%", fontWeight: "bold", padding: 10 }}
+          >
+            <span>{t("name_system")}</span>
+            <span>
+              {t("department_name")} ©{new Date().getFullYear()}
+            </span>
+          </Flex>
         </Footer>
       </Layout>
     </LayoutWrapper>

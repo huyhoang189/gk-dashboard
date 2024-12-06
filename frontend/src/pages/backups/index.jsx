@@ -7,26 +7,28 @@ import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { parseDate } from "../../utils/common";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Bảo mật và sao lưu",
-    },
-    {
-      title: "Sao lưu dữ liệu",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("systems"),
+      },
+      {
+        title: t("backups"),
+      },
+    ],
+  };
 };
 
 const Backups = () => {
   const dispatch = useDispatch();
   const { selectedBackup, isLoading } = useSelector((state) => state.backups);
-
+  const { t } = useTranslation();
   const columns = [
     {
       title: "STT",
@@ -148,7 +150,7 @@ const Backups = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Table
           pagination={false}
@@ -161,7 +163,7 @@ const Backups = () => {
 
         <Flex justify="center" style={{ marginTop: 10 }}>
           <CreateButton
-            btnTxt="Lưu và đồng bộ dữ liệu"
+            btnTxt={t("save")}
             icon={<SyncOutlined />}
             onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedBackup)}
           />

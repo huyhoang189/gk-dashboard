@@ -5,27 +5,29 @@ import { listenColumns } from "./columns";
 import listenSlice from "../../toolkits/listens/slice";
 import { Flex, Input, Space, Table } from "antd";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Quản trị hệ thống",
-    },
-    {
-      title: "Theo dõi hành vi",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("systems"),
+      },
+      {
+        title: t("listens"),
+      },
+    ],
+  };
 };
-
 const Listens = () => {
   const dispatch = useDispatch();
   const { listens, isLoading, totalItem, currentPage, pageSize, listen } =
     useSelector((state) => state.listens);
   const [keyword, setKeyword] = useState("");
+  const { t } = useTranslation();
 
   const columns = [
     ...listenColumns,
@@ -85,7 +87,7 @@ const Listens = () => {
   }, [dispatch, keyword]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Flex
           style={{ width: "100%", marginBottom: 10 }}

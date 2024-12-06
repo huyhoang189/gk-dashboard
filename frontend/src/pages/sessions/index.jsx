@@ -6,31 +6,33 @@ import { Table, Select, Input, Row, Flex, InputNumber } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
 const FIELDS = {
   MAX_CONNECTIONS_PER_HOUR: "max_connections_per_hour",
   SESSION_TIME_EXPIRED: "session_time_expired",
 };
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Bảo mật và sao lưu",
-    },
-    {
-      title: "Bảo mật hệ thống",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("systems"),
+      },
+      {
+        title: t("sessions"),
+      },
+    ],
+  };
 };
 
 const Sessions = () => {
   const dispatch = useDispatch();
   const { selectedSession, isLoading } = useSelector((state) => state.sessions);
-
+  const { t } = useTranslation();
   const columns = [
     {
       title: "STT",
@@ -124,7 +126,7 @@ const Sessions = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Table
           pagination={false}
@@ -137,7 +139,7 @@ const Sessions = () => {
 
         <Flex justify="center" style={{ marginTop: 10 }}>
           <CreateButton
-            btnTxt="Lưu và đồng bộ dữ liệu"
+            btnTxt={t("save")}
             icon={<SyncOutlined />}
             onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedSession)}
           />

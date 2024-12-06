@@ -5,20 +5,22 @@ import { challengeColumns } from "./columns";
 import challengeSlice from "../../toolkits/challenges/slice";
 import { Flex, Input, Space, Table } from "antd";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Giám sát truy vấn",
-    },
-    {
-      title: "Danh sách Challenge Logs",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("moniters"),
+      },
+      {
+        title: t("challenge_logs"),
+      },
+    ],
+  };
 };
 
 const Challenges = () => {
@@ -34,6 +36,7 @@ const Challenges = () => {
   } = useSelector((state) => state.challenges);
   const [keyword, setKeyword] = useState("");
   const [properties, setProperties] = useState(Object.keys(challenge));
+  const { t } = useTranslation();
 
   const columns = [...challengeColumns];
   let dataSource = [];
@@ -70,7 +73,7 @@ const Challenges = () => {
   }, [dispatch, keyword]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Flex
           style={{ width: "100%", marginBottom: 10 }}

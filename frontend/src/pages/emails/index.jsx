@@ -15,19 +15,22 @@ import EmailModal from "./modal";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Cấu hình",
-    },
-    {
-      title: "Danh sách Email",
-    },
-  ],
+import { useTranslation } from "react-i18next";
+
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("configs"),
+      },
+      {
+        title: t("emails"),
+      },
+    ],
+  };
 };
 
 const Emails = () => {
@@ -39,6 +42,7 @@ const Emails = () => {
     current: 1,
     pageSize: 10,
   });
+  const { t } = useTranslation();
 
   const columns = [
     ...emailColumns,
@@ -115,7 +119,7 @@ const Emails = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Row gutter={16}>
           <Col span={12}>

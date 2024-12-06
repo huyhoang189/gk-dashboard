@@ -6,19 +6,22 @@ import blacklistSlice from "../../toolkits/blacklists/slice";
 import { Flex, Input, Space, Table } from "antd";
 import BlacklistModal from "./modal";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Cấu hình",
-    },
-    {
-      title: "Danh sách đen (Blacklist IP)",
-    },
-  ],
+import { useTranslation } from "react-i18next";
+
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("configs"),
+      },
+      {
+        title: t("blacklists"),
+      },
+    ],
+  };
 };
 
 const Backlists = () => {
@@ -29,6 +32,8 @@ const Backlists = () => {
     current: 1,
     pageSize: 10,
   });
+
+  const { t } = useTranslation();
 
   const columns = [
     ...blacklistColumns,
@@ -84,7 +89,7 @@ const Backlists = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Flex
           style={{ width: "100%", marginBottom: 10 }}

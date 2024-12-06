@@ -3,6 +3,7 @@ import {
   BlockOutlined,
   ControlOutlined,
   HomeOutlined,
+  SafetyOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
@@ -114,7 +115,7 @@ const getPublicRouter = (t) => {
     {
       key: "moniters",
       label: t("moniters"),
-      icon: <AimOutlined />,
+      icon: <SafetyOutlined />,
       children: [
         {
           key: "challenges",

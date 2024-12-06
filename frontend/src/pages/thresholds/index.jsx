@@ -6,6 +6,7 @@ import { Table, Select, Input, Row, Flex } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
 const FIELDS = {
   TCP_FLOOD: "tcp_flood",
@@ -20,26 +21,28 @@ const FIELDS = {
   NETWORK_IN: "network_in",
 };
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Cấu hình",
-    },
-    {
-      title: "Cấu hình Threshold",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("configs"),
+      },
+      {
+        title: t("threshold"),
+      },
+    ],
+  };
 };
-
 const Thresholds = () => {
   const dispatch = useDispatch();
   const { selectedThreshold, isLoading } = useSelector(
     (state) => state.thresholds
   );
+
+  const { t } = useTranslation();
 
   const columns = [
     {
@@ -242,7 +245,7 @@ const Thresholds = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Table
           pagination={false}
@@ -255,7 +258,7 @@ const Thresholds = () => {
 
         <Flex justify="center" style={{ marginTop: 10 }}>
           <CreateButton
-            btnTxt="Lưu và đồng bộ dữ liệu"
+            btnTxt={t("save")}
             icon={<SyncOutlined />}
             onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedThreshold)}
           />

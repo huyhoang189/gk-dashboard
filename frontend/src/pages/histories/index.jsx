@@ -5,20 +5,22 @@ import { historyColumns } from "./columns";
 import historySlice from "../../toolkits/histories/slice";
 import { Flex, Input, Space, Table } from "antd";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Bảo mật và sao lưu",
-    },
-    {
-      title: "Danh sách Error Logs",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("systems"),
+      },
+      {
+        title: t("histories"),
+      },
+    ],
+  };
 };
 
 const Histories = () => {
@@ -35,7 +37,7 @@ const Histories = () => {
   // console.log(histories);
   const [keyword, setKeyword] = useState("");
   const [properties, setProperties] = useState(Object.keys(history));
-
+  const { t } = useTranslation();
   const columns = [...historyColumns];
   let dataSource = [];
   dataSource = histories.map((e, i) => ({
@@ -71,7 +73,7 @@ const Histories = () => {
   }, [dispatch, keyword]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Flex
           style={{ width: "100%", marginBottom: 10 }}

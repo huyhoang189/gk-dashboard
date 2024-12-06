@@ -6,6 +6,7 @@ import { Table, Select, Input, Row, Flex } from "antd";
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
 const FIELDS = {
   ROBOO_CHALLENGE_MODES: "$Roboo_challenge_modes",
@@ -21,25 +22,26 @@ const FIELDS = {
   CAP_TRUNC_VALID_COOKIE_AMOUNT: "$cap_trunc_valid_cookie_amount",
 };
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Cấu hình",
-    },
-    {
-      title: "Cấu hình Challenge",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("configs"),
+      },
+      {
+        title: t("nginx"),
+      },
+    ],
+  };
 };
 
 const Configs = () => {
   const dispatch = useDispatch();
   const { selectedConfig, isLoading } = useSelector((state) => state.configs);
-
+  const { t } = useTranslation();
   const columns = [
     {
       title: "STT",
@@ -268,7 +270,7 @@ const Configs = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Table
           pagination={false}
@@ -281,7 +283,7 @@ const Configs = () => {
 
         <Flex justify="center" style={{ marginTop: 10 }}>
           <CreateButton
-            btnTxt="Lưu và đồng bộ dữ liệu"
+            btnTxt={t("save")}
             icon={<SyncOutlined />}
             onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedConfig)}
           />

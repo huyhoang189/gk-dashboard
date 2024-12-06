@@ -14,6 +14,7 @@ import {
 import { SyncOutlined } from "@ant-design/icons";
 import { ACTION_NAME } from "../../commons/constants";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
+import { useTranslation } from "react-i18next";
 
 const FIELDS = {
   SECURITY_LEVEL: "security_level",
@@ -56,19 +57,20 @@ const checkItemCorrect = (item) => {
   );
 };
 
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Bảo mật và sao lưu",
-    },
-    {
-      title: "Bảo mật cơ sở dữ liệu",
-    },
-  ],
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("systems"),
+      },
+      {
+        title: t("databases"),
+      },
+    ],
+  };
 };
 
 const Databases = () => {
@@ -76,6 +78,7 @@ const Databases = () => {
   const { selectedDatabase, isLoading } = useSelector(
     (state) => state.databases
   );
+  const { t } = useTranslation();
 
   const columns = [
     {
@@ -249,7 +252,7 @@ const Databases = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Table
           pagination={false}
@@ -262,7 +265,7 @@ const Databases = () => {
 
         <Flex justify="center" style={{ marginTop: 10 }}>
           <CreateButton
-            btnTxt="Lưu và đồng bộ dữ liệu"
+            btnTxt={t("save")}
             icon={<SyncOutlined />}
             onClick={() => handleRecord(ACTION_NAME.UPDATE, selectedDatabase)}
           />

@@ -11,19 +11,22 @@ import roleSlice from "../../toolkits/roles/slice";
 import { Flex, Input, Space, Table } from "antd";
 import RoleModal from "./modal";
 import { PageBodyWrapper } from "../../assets/styles/page-body-style";
-const pageHeader = {
-  title: "Danh sách ip",
-  breadcrumb: [
-    {
-      title: "Trang chủ",
-    },
-    {
-      title: "Bảo mật và sao lưu",
-    },
-    {
-      title: "Danh sách nhóm quyền",
-    },
-  ],
+import { useTranslation } from "react-i18next";
+
+const pageHeader = (t) => {
+  return {
+    breadcrumb: [
+      {
+        title: t("home"),
+      },
+      {
+        title: t("systems"),
+      },
+      {
+        title: t("roles"),
+      },
+    ],
+  };
 };
 
 const Roles = () => {
@@ -34,6 +37,7 @@ const Roles = () => {
     current: 1,
     pageSize: 10,
   });
+  const { t } = useTranslation();
 
   const columns = [
     ...roleColumns,
@@ -90,7 +94,7 @@ const Roles = () => {
   }, [dispatch]);
   return (
     <div>
-      <Breadcrumb items={pageHeader.breadcrumb} />
+      <Breadcrumb items={pageHeader(t).breadcrumb} />
       <PageBodyWrapper>
         <Flex
           style={{ width: "100%", marginBottom: 10 }}
