@@ -60,16 +60,16 @@ export default function ModalItem() {
       cancelText="Từ chối"
     >
       <TextInput
-        title="Tên đơn vị"
-        placeholder="Nhập vào tên đơn vị"
+        title="Tên phòng ban"
+        placeholder="Nhập vào tên phòng ban"
         onChange={onRecordInputChange}
         property={"name"}
         value={selectedDepartment?.name}
       />
 
       <TextInput
-        title="Mã đơn vị"
-        placeholder="Nhập vào mã đơn vị"
+        title="Mã phòng ban"
+        placeholder="Nhập vào mã phòng ban"
         onChange={onRecordInputChange}
         property={"identification"}
         value={selectedDepartment?.identification}
@@ -84,7 +84,7 @@ export default function ModalItem() {
       />
 
       <SelectInput
-        title="Đơn vị cha"
+        title="Phòng ban cha"
         // placeholder="Nhập vào tên nhóm quyền"
         onChange={onRecordSelectedChange}
         property={"parent_id"}

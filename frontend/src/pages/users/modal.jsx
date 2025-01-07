@@ -97,7 +97,7 @@ export default function ModalItem() {
       />
 
       <SelectInput
-        title="Đơn vị"
+        title="Phòng ban"
         // placeholder="Nhập vào tên nhóm quyền"
         onChange={onRecordSelectedChange}
         property={"department_id"}

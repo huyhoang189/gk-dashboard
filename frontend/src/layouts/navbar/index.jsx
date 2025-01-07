@@ -90,7 +90,7 @@ const Navbar = ({ user }) => {
           gap={5}
         >
           <Avatar icon={<UserOutlined />} size={30} />
-          <h3 style={{}}>{user?.name || "Trực ban tác chiến"}</h3>
+          <h3 style={{}}>{user?.name || "Giám sát hệ thống"}</h3>
         </Flex>
       </Dropdown>
     </Flex>

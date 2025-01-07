@@ -25,7 +25,7 @@ const resources = {
       backups: "Sao lưu dữ liệu",
       users: "Quản lý người dùng",
       roles: "Quản lý quyền",
-      departments: "Quản lý đơn vị",
+      departments: "Quản lý phòng ban",
       listens: "Theo dõi hành vi",
       reports: "Tổng hợp, báo cáo",
       home: "Trang chủ",

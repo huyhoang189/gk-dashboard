@@ -7,13 +7,13 @@ export const departmentColumns = [
     align: "center",
   },
   {
-    title: "Tên đơn vị",
+    title: "Tên phòng ban",
     dataIndex: "name",
     key: "name",
     align: "center",
   },
   {
-    title: "Mã đơn vị",
+    title: "Mã phòng ban",
     dataIndex: "identification",
     key: "identification",
     align: "center",
@@ -25,7 +25,7 @@ export const departmentColumns = [
     align: "center",
   },
   {
-    title: "Đơn vị cha",
+    title: "Phòng ban cha",
     dataIndex: "parent",
     key: "parent",
     align: "center",

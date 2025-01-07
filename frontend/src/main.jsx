@@ -13,6 +13,7 @@ root.render(
   <ConfigProvider
     theme={{
       token: {
+        fontFamily: "'Roboto', sans-serif",
         colorPrimary: "#004682",
         colorBgHeader: "#F3F0CA",
         colorBgNavbar: "#192655",
@@ -21,17 +22,7 @@ root.render(
         colorBorder: "#d6d9dc",
         fontSize: 12,
       },
-      components: {
-        // Menu: {
-        //   darkItemBg: "#006666",
-        //   darkSubMenuItemBg: "#006666",
-        //   darkItemColor: "#fff",
-        //   darkItemHoverBg: "#009999",
-        //   darkItemSelectedBg: "#004d4d",
-        //   itemSelectedBg: "#009999",
-        //   darkPopupBg: "#008080",
-        // },
-      },
+      components: {},
     }}
   >
     <Provider store={store}>

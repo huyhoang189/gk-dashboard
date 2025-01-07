@@ -97,7 +97,7 @@ const MainLayout = () => {
           >
             <Flex align="center" justify={"flex-start"} gap={10}>
               <Image src={logo} width={60} preview={false} />
-              <Typography.Title style={{ color: "#fff", fontWeight: "800" }}>
+              <Typography.Title style={{ color: "#fff", fontWeight: 800 }}>
                 {t("title")}
               </Typography.Title>
             </Flex>

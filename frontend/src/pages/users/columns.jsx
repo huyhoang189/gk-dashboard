@@ -25,7 +25,7 @@ export const userColumns = [
     align: "center",
   },
   {
-    title: "Đơn vị",
+    title: "Phòng ban",
     dataIndex: "department",
     key: "department",
     align: "center",
